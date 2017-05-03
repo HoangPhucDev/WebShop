@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ModelWebBanHang.SAN_PHAM>
+
+@foreach (var item in Model)
+            {
+    <div class="col-sm-6 col-md-3">
+        <div class="product">
+            <div class="image" style="height: 251px;">
+                <a href="/Home/Detail/@item.MA_SP"><img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive image1"></a>
+            </div>
+            <div class="text">
+                <h3>@Html.ActionLink(item.TEN_SP, "Detail/" + item.MA_SP, "Home")</h3>
+                <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
+            </div>
+        </div>
+    </div>
+}

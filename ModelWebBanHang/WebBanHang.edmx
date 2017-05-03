@@ -1,0 +1,2032 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WebBanHangModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CHITIET_HD">
+          <Key>
+            <PropertyRef Name="MA_SP" />
+            <PropertyRef Name="MA_HD" />
+          </Key>
+          <Property Name="MA_SP" Type="int" Nullable="false" />
+          <Property Name="MA_HD" Type="int" Nullable="false" />
+          <Property Name="SO_LUONG_SP" Type="int" />
+          <Property Name="TONG_GIA" Type="money" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="MA_HD" />
+          </Key>
+          <Property Name="MA_HD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_KH" Type="int" />
+          <Property Name="MA_NV" Type="varchar" MaxLength="50" />
+          <Property Name="NGAY_LAP" Type="datetime" Nullable="false" />
+          <Property Name="TINH_GIAO_HANG" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIA_CHI_GIAO_HANG" Type="ntext" />
+          <Property Name="GHI_CHU" Type="ntext" />
+          <Property Name="PHI_GIAO_HANG" Type="money" />
+          <Property Name="THANH_TIEN" Type="money" />
+          <Property Name="TRANG_THAI" Type="int" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="MA_KH" />
+          </Key>
+          <Property Name="MA_KH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MA_TV" Type="varchar" MaxLength="50" />
+          <Property Name="TEN_KH" Type="nvarchar" MaxLength="100" />
+          <Property Name="GIOI_TINH" Type="bit" />
+          <Property Name="NGAY_SINH" Type="date" />
+          <Property Name="TINH" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIA_CHI" Type="ntext" />
+          <Property Name="LIEN_HE" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="NHA_CUNG_CAP">
+          <Key>
+            <PropertyRef Name="MA_NCC" />
+          </Key>
+          <Property Name="MA_NCC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_NCC" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="QUOC_GIA" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIA_CHI" Type="ntext" />
+          <Property Name="LIEN_HE" Type="varchar" MaxLength="20" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="NHAN_VIEN">
+          <Key>
+            <PropertyRef Name="MA_NV" />
+          </Key>
+          <Property Name="MA_NV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MAT_KHAU" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TEN_NV" Type="nvarchar" MaxLength="100" />
+          <Property Name="CHUC_VU" Type="int" Nullable="false" />
+          <Property Name="LIEN_HE" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="NHOM_SAN_PHAM">
+          <Key>
+            <PropertyRef Name="MA_NHOM_SP" />
+          </Key>
+          <Property Name="MA_NHOM_SP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_NHOM_SP" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Order" Type="int" />
+          <Property Name="TRANG_THAI" Type="int" />
+          <Property Name="MA_NHOM_CHA" Type="int" />
+        </EntityType>
+        <EntityType Name="SAN_PHAM">
+          <Key>
+            <PropertyRef Name="MA_SP" />
+          </Key>
+          <Property Name="MA_SP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEN_SP" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="THONG_SO_KY_THUAT" Type="ntext" />
+          <Property Name="CHITIET" Type="ntext" />
+          <Property Name="GIA_NHAP" Type="money" />
+          <Property Name="GIA_BAN" Type="money" />
+          <Property Name="SO_LUONG" Type="int" />
+          <Property Name="HINH_ANH" Type="ntext" />
+          <Property Name="NGAY_NHAP" Type="datetime" />
+          <Property Name="CAN_NANG" Type="float" />
+          <Property Name="TRANG_THAI" Type="int" />
+          <Property Name="THOI_GIAN_BAO_HANH" Type="int" />
+          <Property Name="MA_NHOM_SP" Type="int" />
+          <Property Name="MA_NCC" Type="int" />
+          <Property Name="SO_LAN_TRUY_CAP" Type="int" />
+          <Property Name="NGAY_SUA" Type="datetime" />
+          <Property Name="NGUOI_SUA" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="THANH_VIEN">
+          <Key>
+            <PropertyRef Name="MA_TV" />
+          </Key>
+          <Property Name="MA_TV" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MAT_KHAU" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TEN_TV" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="GIOI_TINH" Type="bit" />
+          <Property Name="NGAY_SINH" Type="date" />
+          <Property Name="TINH" Type="nvarchar" MaxLength="50" />
+          <Property Name="DIA_CHI" Type="ntext" />
+          <Property Name="LIEN_HE" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <Association Name="FK_CHITIET__REFERENCE_HOA_DON">
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="1" />
+          <End Role="CHITIET_HD" Type="Self.CHITIET_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOA_DON">
+              <PropertyRef Name="MA_HD" />
+            </Principal>
+            <Dependent Role="CHITIET_HD">
+              <PropertyRef Name="MA_HD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIET__REFERENCE_SAN_PHAM">
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="1" />
+          <End Role="CHITIET_HD" Type="Self.CHITIET_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SAN_PHAM">
+              <PropertyRef Name="MA_SP" />
+            </Principal>
+            <Dependent Role="CHITIET_HD">
+              <PropertyRef Name="MA_SP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_REFERENCE_KHACH_HA">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="MA_KH" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="MA_KH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_REFERENCE_NHAN_VIE">
+          <End Role="NHAN_VIEN" Type="Self.NHAN_VIEN" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAN_VIEN">
+              <PropertyRef Name="MA_NV" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="MA_NV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHACH_HA_REFERENCE_THANH_VI">
+          <End Role="THANH_VIEN" Type="Self.THANH_VIEN" Multiplicity="0..1" />
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANH_VIEN">
+              <PropertyRef Name="MA_TV" />
+            </Principal>
+            <Dependent Role="KHACH_HANG">
+              <PropertyRef Name="MA_TV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_REFERENCE_NHA_CUNG">
+          <End Role="NHA_CUNG_CAP" Type="Self.NHA_CUNG_CAP" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHA_CUNG_CAP">
+              <PropertyRef Name="MA_NCC" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="MA_NCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_REFERENCE_NHOM_SAN">
+          <End Role="NHOM_SAN_PHAM" Type="Self.NHOM_SAN_PHAM" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM_SAN_PHAM">
+              <PropertyRef Name="MA_NHOM_SP" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="MA_NHOM_SP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+          <Parameter Name="SoLuongSp" Type="int" Mode="In" />
+          <Parameter Name="TongGia" Type="money" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+          <Parameter Name="SoLuongSp" Type="int" Mode="In" />
+          <Parameter Name="TongGia" Type="money" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_CHITIET_HD_SELECT_By_MaHd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_SELECT_By_MaSp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_SELECT_By_MaSpMaHd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_CHITIET_HD_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="OriginalMaSp" Type="int" Mode="In" />
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+          <Parameter Name="OriginalMaHd" Type="int" Mode="In" />
+          <Parameter Name="SoLuongSp" Type="int" Mode="In" />
+          <Parameter Name="TongGia" Type="money" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+          <Parameter Name="NgayLap" Type="datetime" Mode="In" />
+          <Parameter Name="TinhGiaoHang" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChiGiaoHang" Type="ntext" Mode="In" />
+          <Parameter Name="GhiChu" Type="ntext" Mode="In" />
+          <Parameter Name="PhiGiaoHang" Type="money" Mode="In" />
+          <Parameter Name="ThanhTien" Type="money" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHd" Type="int" Mode="InOut" />
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+          <Parameter Name="NgayLap" Type="datetime" Mode="In" />
+          <Parameter Name="TinhGiaoHang" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChiGiaoHang" Type="ntext" Mode="In" />
+          <Parameter Name="GhiChu" Type="ntext" Mode="In" />
+          <Parameter Name="PhiGiaoHang" Type="money" Mode="In" />
+          <Parameter Name="ThanhTien" Type="money" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_HOA_DON_SELECT_By_MaHd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_SELECT_By_MaKh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_SELECT_By_MaNv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_SELECT_By_MaSpFromChitietHd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_HOA_DON_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+          <Parameter Name="NgayLap" Type="datetime" Mode="In" />
+          <Parameter Name="TinhGiaoHang" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChiGiaoHang" Type="ntext" Mode="In" />
+          <Parameter Name="GhiChu" Type="ntext" Mode="In" />
+          <Parameter Name="PhiGiaoHang" Type="money" Mode="In" />
+          <Parameter Name="ThanhTien" Type="money" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+          <Parameter Name="TenKh" Type="nvarchar" Mode="In" />
+          <Parameter Name="GioiTinh" Type="bit" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="Tinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKh" Type="int" Mode="InOut" />
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+          <Parameter Name="TenKh" Type="nvarchar" Mode="In" />
+          <Parameter Name="GioiTinh" Type="bit" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="Tinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_KHACH_HANG_SELECT_By_MaKh" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_SELECT_By_MaTv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_KHACH_HANG_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaKh" Type="int" Mode="In" />
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+          <Parameter Name="TenKh" Type="nvarchar" Mode="In" />
+          <Parameter Name="GioiTinh" Type="bit" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="Tinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHA_CUNG_CAP_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHA_CUNG_CAP_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+          <Parameter Name="TenNcc" Type="nvarchar" Mode="In" />
+          <Parameter Name="QuocGia" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHA_CUNG_CAP_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNcc" Type="int" Mode="InOut" />
+          <Parameter Name="TenNcc" Type="nvarchar" Mode="In" />
+          <Parameter Name="QuocGia" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHA_CUNG_CAP_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_NHA_CUNG_CAP_SELECT_By_MaNcc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHA_CUNG_CAP_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHA_CUNG_CAP_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+          <Parameter Name="TenNcc" Type="nvarchar" Mode="In" />
+          <Parameter Name="QuocGia" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHAN_VIEN_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHAN_VIEN_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="TenNv" Type="nvarchar" Mode="In" />
+          <Parameter Name="ChucVu" Type="int" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHAN_VIEN_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="TenNv" Type="nvarchar" Mode="In" />
+          <Parameter Name="ChucVu" Type="int" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHAN_VIEN_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_NHAN_VIEN_SELECT_By_MaNv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHAN_VIEN_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHAN_VIEN_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNv" Type="varchar" Mode="In" />
+          <Parameter Name="OriginalMaNv" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="TenNv" Type="nvarchar" Mode="In" />
+          <Parameter Name="ChucVu" Type="int" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_NHOM_SAN_PHAM_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHOM_SAN_PHAM_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+          <Parameter Name="TenNhomSp" Type="nvarchar" Mode="In" />
+          <Parameter Name="Order" Type="int" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+          <Parameter Name="MaNhomCha" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHOM_SAN_PHAM_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhomSp" Type="int" Mode="InOut" />
+          <Parameter Name="TenNhomSp" Type="nvarchar" Mode="In" />
+          <Parameter Name="Order" Type="int" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+          <Parameter Name="MaNhomCha" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHOM_SAN_PHAM_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHOM_SAN_PHAM_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_NHOM_SAN_PHAM_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+          <Parameter Name="TenNhomSp" Type="nvarchar" Mode="In" />
+          <Parameter Name="Order" Type="int" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+          <Parameter Name="MaNhomCha" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="TenSp" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThongSoKyThuat" Type="ntext" Mode="In" />
+          <Parameter Name="Chitiet" Type="ntext" Mode="In" />
+          <Parameter Name="GiaNhap" Type="money" Mode="In" />
+          <Parameter Name="GiaBan" Type="money" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="HinhAnh" Type="ntext" Mode="In" />
+          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
+          <Parameter Name="CanNang" Type="float" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+          <Parameter Name="ThoiGianBaoHanh" Type="int" Mode="In" />
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="InOut" />
+          <Parameter Name="TenSp" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThongSoKyThuat" Type="ntext" Mode="In" />
+          <Parameter Name="Chitiet" Type="ntext" Mode="In" />
+          <Parameter Name="GiaNhap" Type="money" Mode="In" />
+          <Parameter Name="GiaBan" Type="money" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="HinhAnh" Type="ntext" Mode="In" />
+          <Parameter Name="NgayNhap" Type="datetime" Mode="In" />
+          <Parameter Name="CanNang" Type="float" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+          <Parameter Name="ThoiGianBaoHanh" Type="int" Mode="In" />
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaHd" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_SELECT_By_MaNcc" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_SELECT_By_MaNhomSp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_SELECT_By_MaNhomSp_BaoGom_MaNhomCha" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_SELECT_By_MaSp" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_SAN_PHAM_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaSp" Type="int" Mode="In" />
+          <Parameter Name="TenSp" Type="nvarchar" Mode="In" />
+          <Parameter Name="ThongSoKyThuat" Type="ntext" Mode="In" />
+          <Parameter Name="Chitiet" Type="ntext" Mode="In" />
+          <Parameter Name="GiaNhap" Type="money" Mode="In" />
+          <Parameter Name="GiaBan" Type="money" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="HinhAnh" Type="ntext" Mode="In" />
+          <Parameter Name="CanNang" Type="float" Mode="In" />
+          <Parameter Name="TrangThai" Type="int" Mode="In" />
+          <Parameter Name="ThoiGianBaoHanh" Type="int" Mode="In" />
+          <Parameter Name="MaNhomSp" Type="int" Mode="In" />
+          <Parameter Name="MaNcc" Type="int" Mode="In" />
+          <Parameter Name="NgaySua" Type="datetime" Mode="In" />
+          <Parameter Name="NguoiSua" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_THANH_VIEN_DELETE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_THANH_VIEN_FIND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchUsingOR" Type="bit" Mode="In" />
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="TenTv" Type="nvarchar" Mode="In" />
+          <Parameter Name="GioiTinh" Type="bit" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="Tinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_THANH_VIEN_INSERT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="TenTv" Type="nvarchar" Mode="In" />
+          <Parameter Name="GioiTinh" Type="bit" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="Tinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_THANH_VIEN_SELECT_ALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_THANH_VIEN_SELECT_By_MaTv" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_THANH_VIEN_SELECT_Paged" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="WhereClause" Type="varchar" Mode="In" />
+          <Parameter Name="OrderBy" Type="varchar" Mode="In" />
+          <Parameter Name="PageIndex" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SP_THANH_VIEN_UPDATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MaTv" Type="varchar" Mode="In" />
+          <Parameter Name="OriginalMaTv" Type="varchar" Mode="In" />
+          <Parameter Name="MatKhau" Type="varchar" Mode="In" />
+          <Parameter Name="TenTv" Type="nvarchar" Mode="In" />
+          <Parameter Name="GioiTinh" Type="bit" Mode="In" />
+          <Parameter Name="NgaySinh" Type="date" Mode="In" />
+          <Parameter Name="Tinh" Type="nvarchar" Mode="In" />
+          <Parameter Name="DiaChi" Type="ntext" Mode="In" />
+          <Parameter Name="LienHe" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="WebBanHangModelStoreContainer">
+          <EntitySet Name="CHITIET_HD" EntityType="Self.CHITIET_HD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHA_CUNG_CAP" EntityType="Self.NHA_CUNG_CAP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHAN_VIEN" EntityType="Self.NHAN_VIEN" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NHOM_SAN_PHAM" EntityType="Self.NHOM_SAN_PHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SAN_PHAM" EntityType="Self.SAN_PHAM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="THANH_VIEN" EntityType="Self.THANH_VIEN" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CHITIET__REFERENCE_HOA_DON" Association="Self.FK_CHITIET__REFERENCE_HOA_DON">
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+            <End Role="CHITIET_HD" EntitySet="CHITIET_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIET__REFERENCE_SAN_PHAM" Association="Self.FK_CHITIET__REFERENCE_SAN_PHAM">
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+            <End Role="CHITIET_HD" EntitySet="CHITIET_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_REFERENCE_KHACH_HA" Association="Self.FK_HOA_DON_REFERENCE_KHACH_HA">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_REFERENCE_NHAN_VIE" Association="Self.FK_HOA_DON_REFERENCE_NHAN_VIE">
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHACH_HA_REFERENCE_THANH_VI" Association="Self.FK_KHACH_HA_REFERENCE_THANH_VI">
+            <End Role="THANH_VIEN" EntitySet="THANH_VIEN" />
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_REFERENCE_NHA_CUNG" Association="Self.FK_SAN_PHAM_REFERENCE_NHA_CUNG">
+            <End Role="NHA_CUNG_CAP" EntitySet="NHA_CUNG_CAP" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_REFERENCE_NHOM_SAN" Association="Self.FK_SAN_PHAM_REFERENCE_NHOM_SAN">
+            <End Role="NHOM_SAN_PHAM" EntitySet="NHOM_SAN_PHAM" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WebBanHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CHITIET_HD">
+          <Key>
+            <PropertyRef Name="MA_SP" />
+            <PropertyRef Name="MA_HD" />
+          </Key>
+          <Property Name="MA_SP" Type="Int32" Nullable="false" />
+          <Property Name="MA_HD" Type="Int32" Nullable="false" />
+          <Property Name="SO_LUONG_SP" Type="Int32" />
+          <Property Name="TONG_GIA" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="HOA_DON" Relationship="Self.FK_CHITIET__REFERENCE_HOA_DON" FromRole="CHITIET_HD" ToRole="HOA_DON" />
+          <NavigationProperty Name="SAN_PHAM" Relationship="Self.FK_CHITIET__REFERENCE_SAN_PHAM" FromRole="CHITIET_HD" ToRole="SAN_PHAM" />
+        </EntityType>
+        <EntityType Name="HOA_DON">
+          <Key>
+            <PropertyRef Name="MA_HD" />
+          </Key>
+          <Property Name="MA_HD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_KH" Type="Int32" />
+          <Property Name="MA_NV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NGAY_LAP" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TINH_GIAO_HANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI_GIAO_HANG" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GHI_CHU" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PHI_GIAO_HANG" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="THANH_TIEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="TRANG_THAI" Type="Int32" />
+          <NavigationProperty Name="CHITIET_HD" Relationship="Self.FK_CHITIET__REFERENCE_HOA_DON" FromRole="HOA_DON" ToRole="CHITIET_HD" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK_HOA_DON_REFERENCE_KHACH_HA" FromRole="HOA_DON" ToRole="KHACH_HANG" />
+          <NavigationProperty Name="NHAN_VIEN" Relationship="Self.FK_HOA_DON_REFERENCE_NHAN_VIE" FromRole="HOA_DON" ToRole="NHAN_VIEN" />
+        </EntityType>
+        <EntityType Name="KHACH_HANG">
+          <Key>
+            <PropertyRef Name="MA_KH" />
+          </Key>
+          <Property Name="MA_KH" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MA_TV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TEN_KH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GIOI_TINH" Type="Boolean" />
+          <Property Name="NGAY_SINH" Type="DateTime" Precision="0" />
+          <Property Name="TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LIEN_HE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOA_DON" Relationship="Self.FK_HOA_DON_REFERENCE_KHACH_HA" FromRole="KHACH_HANG" ToRole="HOA_DON" />
+          <NavigationProperty Name="THANH_VIEN" Relationship="Self.FK_KHACH_HA_REFERENCE_THANH_VI" FromRole="KHACH_HANG" ToRole="THANH_VIEN" />
+        </EntityType>
+        <EntityType Name="NHA_CUNG_CAP">
+          <Key>
+            <PropertyRef Name="MA_NCC" />
+          </Key>
+          <Property Name="MA_NCC" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_NCC" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QUOC_GIA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LIEN_HE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SAN_PHAM" Relationship="Self.FK_SAN_PHAM_REFERENCE_NHA_CUNG" FromRole="NHA_CUNG_CAP" ToRole="SAN_PHAM" />
+        </EntityType>
+        <EntityType Name="NHAN_VIEN">
+          <Key>
+            <PropertyRef Name="MA_NV" />
+          </Key>
+          <Property Name="MA_NV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAT_KHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEN_NV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CHUC_VU" Type="Int32" Nullable="false" />
+          <Property Name="LIEN_HE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="HOA_DON" Relationship="Self.FK_HOA_DON_REFERENCE_NHAN_VIE" FromRole="NHAN_VIEN" ToRole="HOA_DON" />
+        </EntityType>
+        <EntityType Name="NHOM_SAN_PHAM">
+          <Key>
+            <PropertyRef Name="MA_NHOM_SP" />
+          </Key>
+          <Property Name="MA_NHOM_SP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_NHOM_SP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="TRANG_THAI" Type="Int32" />
+          <Property Name="MA_NHOM_CHA" Type="Int32" />
+          <NavigationProperty Name="SAN_PHAM" Relationship="Self.FK_SAN_PHAM_REFERENCE_NHOM_SAN" FromRole="NHOM_SAN_PHAM" ToRole="SAN_PHAM" />
+        </EntityType>
+        <EntityType Name="SAN_PHAM">
+          <Key>
+            <PropertyRef Name="MA_SP" />
+          </Key>
+          <Property Name="MA_SP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEN_SP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="THONG_SO_KY_THUAT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CHITIET" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GIA_NHAP" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="GIA_BAN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="SO_LUONG" Type="Int32" />
+          <Property Name="HINH_ANH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NGAY_NHAP" Type="DateTime" Precision="3" />
+          <Property Name="CAN_NANG" Type="Double" />
+          <Property Name="TRANG_THAI" Type="Int32" />
+          <Property Name="THOI_GIAN_BAO_HANH" Type="Int32" />
+          <Property Name="MA_NHOM_SP" Type="Int32" />
+          <Property Name="MA_NCC" Type="Int32" />
+          <NavigationProperty Name="CHITIET_HD" Relationship="Self.FK_CHITIET__REFERENCE_SAN_PHAM" FromRole="SAN_PHAM" ToRole="CHITIET_HD" />
+          <NavigationProperty Name="NHA_CUNG_CAP" Relationship="Self.FK_SAN_PHAM_REFERENCE_NHA_CUNG" FromRole="SAN_PHAM" ToRole="NHA_CUNG_CAP" />
+          <NavigationProperty Name="NHOM_SAN_PHAM" Relationship="Self.FK_SAN_PHAM_REFERENCE_NHOM_SAN" FromRole="SAN_PHAM" ToRole="NHOM_SAN_PHAM" />
+          <Property Name="SO_LAN_TRUY_CAP" Type="Int32" />
+          <Property Name="NGAY_SUA" Type="DateTime" Precision="3" />
+          <Property Name="NGUOI_SUA" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="THANH_VIEN">
+          <Key>
+            <PropertyRef Name="MA_TV" />
+          </Key>
+          <Property Name="MA_TV" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MAT_KHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TEN_TV" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GIOI_TINH" Type="Boolean" />
+          <Property Name="NGAY_SINH" Type="DateTime" Precision="0" />
+          <Property Name="TINH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DIA_CHI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LIEN_HE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KHACH_HANG" Relationship="Self.FK_KHACH_HA_REFERENCE_THANH_VI" FromRole="THANH_VIEN" ToRole="KHACH_HANG" />
+        </EntityType>
+        <Association Name="FK_CHITIET__REFERENCE_HOA_DON">
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="1" />
+          <End Role="CHITIET_HD" Type="Self.CHITIET_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOA_DON">
+              <PropertyRef Name="MA_HD" />
+            </Principal>
+            <Dependent Role="CHITIET_HD">
+              <PropertyRef Name="MA_HD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CHITIET__REFERENCE_SAN_PHAM">
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="1" />
+          <End Role="CHITIET_HD" Type="Self.CHITIET_HD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SAN_PHAM">
+              <PropertyRef Name="MA_SP" />
+            </Principal>
+            <Dependent Role="CHITIET_HD">
+              <PropertyRef Name="MA_SP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_REFERENCE_KHACH_HA">
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACH_HANG">
+              <PropertyRef Name="MA_KH" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="MA_KH" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HOA_DON_REFERENCE_NHAN_VIE">
+          <End Role="NHAN_VIEN" Type="Self.NHAN_VIEN" Multiplicity="0..1" />
+          <End Role="HOA_DON" Type="Self.HOA_DON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHAN_VIEN">
+              <PropertyRef Name="MA_NV" />
+            </Principal>
+            <Dependent Role="HOA_DON">
+              <PropertyRef Name="MA_NV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KHACH_HA_REFERENCE_THANH_VI">
+          <End Role="THANH_VIEN" Type="Self.THANH_VIEN" Multiplicity="0..1" />
+          <End Role="KHACH_HANG" Type="Self.KHACH_HANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="THANH_VIEN">
+              <PropertyRef Name="MA_TV" />
+            </Principal>
+            <Dependent Role="KHACH_HANG">
+              <PropertyRef Name="MA_TV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_REFERENCE_NHA_CUNG">
+          <End Role="NHA_CUNG_CAP" Type="Self.NHA_CUNG_CAP" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHA_CUNG_CAP">
+              <PropertyRef Name="MA_NCC" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="MA_NCC" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SAN_PHAM_REFERENCE_NHOM_SAN">
+          <End Role="NHOM_SAN_PHAM" Type="Self.NHOM_SAN_PHAM" Multiplicity="0..1" />
+          <End Role="SAN_PHAM" Type="Self.SAN_PHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHOM_SAN_PHAM">
+              <PropertyRef Name="MA_NHOM_SP" />
+            </Principal>
+            <Dependent Role="SAN_PHAM">
+              <PropertyRef Name="MA_NHOM_SP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WebBanHang" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CHITIET_HD" EntityType="Self.CHITIET_HD" />
+          <EntitySet Name="HOA_DON" EntityType="Self.HOA_DON" />
+          <EntitySet Name="KHACH_HANG" EntityType="Self.KHACH_HANG" />
+          <EntitySet Name="NHA_CUNG_CAP" EntityType="Self.NHA_CUNG_CAP" />
+          <EntitySet Name="NHAN_VIEN" EntityType="Self.NHAN_VIEN" />
+          <EntitySet Name="NHOM_SAN_PHAM" EntityType="Self.NHOM_SAN_PHAM" />
+          <EntitySet Name="SAN_PHAM" EntityType="Self.SAN_PHAM" />
+          <EntitySet Name="THANH_VIEN" EntityType="Self.THANH_VIEN" />
+          <AssociationSet Name="FK_CHITIET__REFERENCE_HOA_DON" Association="Self.FK_CHITIET__REFERENCE_HOA_DON">
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+            <End Role="CHITIET_HD" EntitySet="CHITIET_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CHITIET__REFERENCE_SAN_PHAM" Association="Self.FK_CHITIET__REFERENCE_SAN_PHAM">
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+            <End Role="CHITIET_HD" EntitySet="CHITIET_HD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_REFERENCE_KHACH_HA" Association="Self.FK_HOA_DON_REFERENCE_KHACH_HA">
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HOA_DON_REFERENCE_NHAN_VIE" Association="Self.FK_HOA_DON_REFERENCE_NHAN_VIE">
+            <End Role="NHAN_VIEN" EntitySet="NHAN_VIEN" />
+            <End Role="HOA_DON" EntitySet="HOA_DON" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KHACH_HA_REFERENCE_THANH_VI" Association="Self.FK_KHACH_HA_REFERENCE_THANH_VI">
+            <End Role="THANH_VIEN" EntitySet="THANH_VIEN" />
+            <End Role="KHACH_HANG" EntitySet="KHACH_HANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_REFERENCE_NHA_CUNG" Association="Self.FK_SAN_PHAM_REFERENCE_NHA_CUNG">
+            <End Role="NHA_CUNG_CAP" EntitySet="NHA_CUNG_CAP" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SAN_PHAM_REFERENCE_NHOM_SAN" Association="Self.FK_SAN_PHAM_REFERENCE_NHOM_SAN">
+            <End Role="NHOM_SAN_PHAM" EntitySet="NHOM_SAN_PHAM" />
+            <End Role="SAN_PHAM" EntitySet="SAN_PHAM" />
+          </AssociationSet>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_DELETE">
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_FIND" ReturnType="Collection(WebBanHangModel.SP_CHITIET_HD_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+            <Parameter Name="SoLuongSp" Mode="In" Type="Int32" />
+            <Parameter Name="TongGia" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_INSERT">
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+            <Parameter Name="SoLuongSp" Mode="In" Type="Int32" />
+            <Parameter Name="TongGia" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_SELECT_ALL" EntitySet="CHITIET_HD" ReturnType="Collection(WebBanHangModel.CHITIET_HD)" />
+          <FunctionImport Name="SP_CHITIET_HD_SELECT_By_MaHd" EntitySet="CHITIET_HD" ReturnType="Collection(WebBanHangModel.CHITIET_HD)">
+          <Parameter Name="MaHd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_SELECT_By_MaSp" EntitySet="CHITIET_HD" ReturnType="Collection(WebBanHangModel.CHITIET_HD)">
+          <Parameter Name="MaSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_SELECT_By_MaSpMaHd" EntitySet="CHITIET_HD" ReturnType="Collection(WebBanHangModel.CHITIET_HD)">
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_CHITIET_HD_UPDATE">
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="OriginalMaSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+            <Parameter Name="OriginalMaHd" Mode="In" Type="Int32" />
+            <Parameter Name="SoLuongSp" Mode="In" Type="Int32" />
+            <Parameter Name="TongGia" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(WebBanHangModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(WebBanHangModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_DELETE">
+          <Parameter Name="MaHd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_FIND" ReturnType="Collection(WebBanHangModel.SP_HOA_DON_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+            <Parameter Name="MaKh" Mode="In" Type="Int32" />
+            <Parameter Name="MaNv" Mode="In" Type="String" />
+            <Parameter Name="NgayLap" Mode="In" Type="DateTime" />
+            <Parameter Name="TinhGiaoHang" Mode="In" Type="String" />
+            <Parameter Name="DiaChiGiaoHang" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="PhiGiaoHang" Mode="In" Type="Decimal" />
+            <Parameter Name="ThanhTien" Mode="In" Type="Decimal" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_INSERT">
+            <Parameter Name="MaHd" Mode="InOut" Type="Int32" />
+            <Parameter Name="MaKh" Mode="In" Type="Int32" />
+            <Parameter Name="MaNv" Mode="In" Type="String" />
+            <Parameter Name="NgayLap" Mode="In" Type="DateTime" />
+            <Parameter Name="TinhGiaoHang" Mode="In" Type="String" />
+            <Parameter Name="DiaChiGiaoHang" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="PhiGiaoHang" Mode="In" Type="Decimal" />
+            <Parameter Name="ThanhTien" Mode="In" Type="Decimal" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_SELECT_ALL" EntitySet="HOA_DON" ReturnType="Collection(WebBanHangModel.HOA_DON)" />
+          <FunctionImport Name="SP_HOA_DON_SELECT_By_MaHd" EntitySet="HOA_DON" ReturnType="Collection(WebBanHangModel.HOA_DON)">
+          <Parameter Name="MaHd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_SELECT_By_MaKh" EntitySet="HOA_DON" ReturnType="Collection(WebBanHangModel.HOA_DON)">
+          <Parameter Name="MaKh" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_SELECT_By_MaNv" EntitySet="HOA_DON" ReturnType="Collection(WebBanHangModel.HOA_DON)">
+          <Parameter Name="MaNv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_SELECT_By_MaSpFromChitietHd" EntitySet="HOA_DON" ReturnType="Collection(WebBanHangModel.HOA_DON)">
+          <Parameter Name="MaSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_HOA_DON_UPDATE">
+            <Parameter Name="MaHd" Mode="In" Type="Int32" />
+            <Parameter Name="MaKh" Mode="In" Type="Int32" />
+            <Parameter Name="MaNv" Mode="In" Type="String" />
+            <Parameter Name="NgayLap" Mode="In" Type="DateTime" />
+            <Parameter Name="TinhGiaoHang" Mode="In" Type="String" />
+            <Parameter Name="DiaChiGiaoHang" Mode="In" Type="String" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="PhiGiaoHang" Mode="In" Type="Decimal" />
+            <Parameter Name="ThanhTien" Mode="In" Type="Decimal" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_DELETE">
+          <Parameter Name="MaKh" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_FIND" ReturnType="Collection(WebBanHangModel.SP_KHACH_HANG_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaKh" Mode="In" Type="Int32" />
+            <Parameter Name="MaTv" Mode="In" Type="String" />
+            <Parameter Name="TenKh" Mode="In" Type="String" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Boolean" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="Tinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_INSERT">
+            <Parameter Name="MaKh" Mode="InOut" Type="Int32" />
+            <Parameter Name="MaTv" Mode="In" Type="String" />
+            <Parameter Name="TenKh" Mode="In" Type="String" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Boolean" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="Tinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_SELECT_ALL" EntitySet="KHACH_HANG" ReturnType="Collection(WebBanHangModel.KHACH_HANG)" />
+          <FunctionImport Name="SP_KHACH_HANG_SELECT_By_MaKh" EntitySet="KHACH_HANG" ReturnType="Collection(WebBanHangModel.KHACH_HANG)">
+          <Parameter Name="MaKh" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_SELECT_By_MaTv" EntitySet="KHACH_HANG" ReturnType="Collection(WebBanHangModel.KHACH_HANG)">
+          <Parameter Name="MaTv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_KHACH_HANG_UPDATE">
+            <Parameter Name="MaKh" Mode="In" Type="Int32" />
+            <Parameter Name="MaTv" Mode="In" Type="String" />
+            <Parameter Name="TenKh" Mode="In" Type="String" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Boolean" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="Tinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHA_CUNG_CAP_DELETE">
+          <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHA_CUNG_CAP_FIND" ReturnType="Collection(WebBanHangModel.SP_NHA_CUNG_CAP_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+            <Parameter Name="TenNcc" Mode="In" Type="String" />
+            <Parameter Name="QuocGia" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHA_CUNG_CAP_INSERT">
+            <Parameter Name="MaNcc" Mode="InOut" Type="Int32" />
+            <Parameter Name="TenNcc" Mode="In" Type="String" />
+            <Parameter Name="QuocGia" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHA_CUNG_CAP_SELECT_ALL" EntitySet="NHA_CUNG_CAP" ReturnType="Collection(WebBanHangModel.NHA_CUNG_CAP)" />
+          <FunctionImport Name="SP_NHA_CUNG_CAP_SELECT_By_MaNcc" EntitySet="NHA_CUNG_CAP" ReturnType="Collection(WebBanHangModel.NHA_CUNG_CAP)">
+          <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHA_CUNG_CAP_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHA_CUNG_CAP_UPDATE">
+            <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+            <Parameter Name="TenNcc" Mode="In" Type="String" />
+            <Parameter Name="QuocGia" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHAN_VIEN_DELETE">
+          <Parameter Name="MaNv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHAN_VIEN_FIND" ReturnType="Collection(WebBanHangModel.SP_NHAN_VIEN_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaNv" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="TenNv" Mode="In" Type="String" />
+            <Parameter Name="ChucVu" Mode="In" Type="Int32" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHAN_VIEN_INSERT">
+            <Parameter Name="MaNv" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="TenNv" Mode="In" Type="String" />
+            <Parameter Name="ChucVu" Mode="In" Type="Int32" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHAN_VIEN_SELECT_ALL" EntitySet="NHAN_VIEN" ReturnType="Collection(WebBanHangModel.NHAN_VIEN)" />
+          <FunctionImport Name="SP_NHAN_VIEN_SELECT_By_MaNv" EntitySet="NHAN_VIEN" ReturnType="Collection(WebBanHangModel.NHAN_VIEN)">
+          <Parameter Name="MaNv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHAN_VIEN_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHAN_VIEN_UPDATE">
+            <Parameter Name="MaNv" Mode="In" Type="String" />
+            <Parameter Name="OriginalMaNv" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="TenNv" Mode="In" Type="String" />
+            <Parameter Name="ChucVu" Mode="In" Type="Int32" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_DELETE">
+          <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_FIND" ReturnType="Collection(WebBanHangModel.SP_NHOM_SAN_PHAM_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+            <Parameter Name="TenNhomSp" Mode="In" Type="String" />
+            <Parameter Name="Order" Mode="In" Type="Int32" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+            <Parameter Name="MaNhomCha" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_INSERT">
+            <Parameter Name="MaNhomSp" Mode="InOut" Type="Int32" />
+            <Parameter Name="TenNhomSp" Mode="In" Type="String" />
+            <Parameter Name="Order" Mode="In" Type="Int32" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+            <Parameter Name="MaNhomCha" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_SELECT_ALL" EntitySet="NHOM_SAN_PHAM" ReturnType="Collection(WebBanHangModel.NHOM_SAN_PHAM)" />
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp" EntitySet="NHOM_SAN_PHAM" ReturnType="Collection(WebBanHangModel.NHOM_SAN_PHAM)">
+          <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_NHOM_SAN_PHAM_UPDATE">
+            <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+            <Parameter Name="TenNhomSp" Mode="In" Type="String" />
+            <Parameter Name="Order" Mode="In" Type="Int32" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+            <Parameter Name="MaNhomCha" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_DELETE">
+          <Parameter Name="MaSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_FIND" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="TenSp" Mode="In" Type="String" />
+            <Parameter Name="ThongSoKyThuat" Mode="In" Type="String" />
+            <Parameter Name="Chitiet" Mode="In" Type="String" />
+            <Parameter Name="GiaNhap" Mode="In" Type="Decimal" />
+            <Parameter Name="GiaBan" Mode="In" Type="Decimal" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="HinhAnh" Mode="In" Type="String" />
+            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
+            <Parameter Name="CanNang" Mode="In" Type="Double" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+            <Parameter Name="ThoiGianBaoHanh" Mode="In" Type="Int32" />
+            <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_INSERT">
+            <Parameter Name="MaSp" Mode="InOut" Type="Int32" />
+            <Parameter Name="TenSp" Mode="In" Type="String" />
+            <Parameter Name="ThongSoKyThuat" Mode="In" Type="String" />
+            <Parameter Name="Chitiet" Mode="In" Type="String" />
+            <Parameter Name="GiaNhap" Mode="In" Type="Decimal" />
+            <Parameter Name="GiaBan" Mode="In" Type="Decimal" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="HinhAnh" Mode="In" Type="String" />
+            <Parameter Name="NgayNhap" Mode="In" Type="DateTime" />
+            <Parameter Name="CanNang" Mode="In" Type="Double" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+            <Parameter Name="ThoiGianBaoHanh" Mode="In" Type="Int32" />
+            <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_ALL" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)" />
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)">
+          <Parameter Name="MaHd" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_By_MaNcc" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)">
+          <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_By_MaNhomSp" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)">
+          <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_By_MaSp" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)">
+          <Parameter Name="MaSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_SAN_PHAM_UPDATE">
+            <Parameter Name="MaSp" Mode="In" Type="Int32" />
+            <Parameter Name="TenSp" Mode="In" Type="String" />
+            <Parameter Name="ThongSoKyThuat" Mode="In" Type="String" />
+            <Parameter Name="Chitiet" Mode="In" Type="String" />
+            <Parameter Name="GiaNhap" Mode="In" Type="Decimal" />
+            <Parameter Name="GiaBan" Mode="In" Type="Decimal" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="HinhAnh" Mode="In" Type="String" />
+            <Parameter Name="CanNang" Mode="In" Type="Double" />
+            <Parameter Name="TrangThai" Mode="In" Type="Int32" />
+            <Parameter Name="ThoiGianBaoHanh" Mode="In" Type="Int32" />
+            <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+            <Parameter Name="MaNcc" Mode="In" Type="Int32" />
+            <Parameter Name="NgaySua" Mode="In" Type="DateTime" />
+            <Parameter Name="NguoiSua" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_THANH_VIEN_DELETE">
+          <Parameter Name="MaTv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_THANH_VIEN_FIND" ReturnType="Collection(WebBanHangModel.SP_THANH_VIEN_FIND_Result)">
+            <Parameter Name="SearchUsingOR" Mode="In" Type="Boolean" />
+            <Parameter Name="MaTv" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="TenTv" Mode="In" Type="String" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Boolean" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="Tinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_THANH_VIEN_INSERT">
+            <Parameter Name="MaTv" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="TenTv" Mode="In" Type="String" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Boolean" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="Tinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_THANH_VIEN_SELECT_ALL" EntitySet="THANH_VIEN" ReturnType="Collection(WebBanHangModel.THANH_VIEN)" />
+          <FunctionImport Name="SP_THANH_VIEN_SELECT_By_MaTv" EntitySet="THANH_VIEN" ReturnType="Collection(WebBanHangModel.THANH_VIEN)">
+          <Parameter Name="MaTv" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_THANH_VIEN_SELECT_Paged">
+            <Parameter Name="WhereClause" Mode="In" Type="String" />
+            <Parameter Name="OrderBy" Mode="In" Type="String" />
+            <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SP_THANH_VIEN_UPDATE">
+            <Parameter Name="MaTv" Mode="In" Type="String" />
+            <Parameter Name="OriginalMaTv" Mode="In" Type="String" />
+            <Parameter Name="MatKhau" Mode="In" Type="String" />
+            <Parameter Name="TenTv" Mode="In" Type="String" />
+            <Parameter Name="GioiTinh" Mode="In" Type="Boolean" />
+            <Parameter Name="NgaySinh" Mode="In" Type="DateTime" />
+            <Parameter Name="Tinh" Mode="In" Type="String" />
+            <Parameter Name="DiaChi" Mode="In" Type="String" />
+            <Parameter Name="LienHe" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="SP_SAN_PHAM_SELECT_By_MaNhomSp_BaoGom_MaNhomCha" EntitySet="SAN_PHAM" ReturnType="Collection(WebBanHangModel.SAN_PHAM)">
+          <Parameter Name="MaNhomSp" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="SP_CHITIET_HD_FIND_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="SO_LUONG_SP" Nullable="true" />
+          <Property Type="Decimal" Name="TONG_GIA" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="SP_CHITIET_HD_SELECT_ALL_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="SO_LUONG_SP" Nullable="true" />
+          <Property Type="Decimal" Name="TONG_GIA" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="SP_CHITIET_HD_SELECT_By_MaHd_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="SO_LUONG_SP" Nullable="true" />
+          <Property Type="Decimal" Name="TONG_GIA" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="SP_CHITIET_HD_SELECT_By_MaSp_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="SO_LUONG_SP" Nullable="true" />
+          <Property Type="Decimal" Name="TONG_GIA" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="SP_CHITIET_HD_SELECT_By_MaSpMaHd_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="SO_LUONG_SP" Nullable="true" />
+          <Property Type="Decimal" Name="TONG_GIA" Nullable="true" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="SP_HOA_DON_FIND_Result">
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="MA_KH" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAY_LAP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TINH_GIAO_HANG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI_GIAO_HANG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="PHI_GIAO_HANG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="THANH_TIEN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_HOA_DON_SELECT_ALL_Result">
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="MA_KH" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAY_LAP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TINH_GIAO_HANG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI_GIAO_HANG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="PHI_GIAO_HANG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="THANH_TIEN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_HOA_DON_SELECT_By_MaHd_Result">
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="MA_KH" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAY_LAP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TINH_GIAO_HANG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI_GIAO_HANG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="PHI_GIAO_HANG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="THANH_TIEN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_HOA_DON_SELECT_By_MaKh_Result">
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="MA_KH" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAY_LAP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TINH_GIAO_HANG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI_GIAO_HANG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="PHI_GIAO_HANG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="THANH_TIEN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_HOA_DON_SELECT_By_MaNv_Result">
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="MA_KH" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAY_LAP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TINH_GIAO_HANG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI_GIAO_HANG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="PHI_GIAO_HANG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="THANH_TIEN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_HOA_DON_SELECT_By_MaSpFromChitietHd_Result">
+          <Property Type="Int32" Name="MA_HD" Nullable="false" />
+          <Property Type="Int32" Name="MA_KH" Nullable="true" />
+          <Property Type="String" Name="MA_NV" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="NGAY_LAP" Nullable="false" Precision="23" />
+          <Property Type="String" Name="TINH_GIAO_HANG" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI_GIAO_HANG" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="GHI_CHU" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="PHI_GIAO_HANG" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="THANH_TIEN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_KHACH_HANG_FIND_Result">
+          <Property Type="Int32" Name="MA_KH" Nullable="false" />
+          <Property Type="String" Name="MA_TV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TEN_KH" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_KHACH_HANG_SELECT_ALL_Result">
+          <Property Type="Int32" Name="MA_KH" Nullable="false" />
+          <Property Type="String" Name="MA_TV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TEN_KH" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_KHACH_HANG_SELECT_By_MaKh_Result">
+          <Property Type="Int32" Name="MA_KH" Nullable="false" />
+          <Property Type="String" Name="MA_TV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TEN_KH" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_KHACH_HANG_SELECT_By_MaTv_Result">
+          <Property Type="Int32" Name="MA_KH" Nullable="false" />
+          <Property Type="String" Name="MA_TV" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="TEN_KH" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHA_CUNG_CAP_FIND_Result">
+          <Property Type="Int32" Name="MA_NCC" Nullable="false" />
+          <Property Type="String" Name="TEN_NCC" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="QUOC_GIA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHA_CUNG_CAP_SELECT_ALL_Result">
+          <Property Type="Int32" Name="MA_NCC" Nullable="false" />
+          <Property Type="String" Name="TEN_NCC" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="QUOC_GIA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHA_CUNG_CAP_SELECT_By_MaNcc_Result">
+          <Property Type="Int32" Name="MA_NCC" Nullable="false" />
+          <Property Type="String" Name="TEN_NCC" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="QUOC_GIA" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="EMAIL" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHAN_VIEN_FIND_Result">
+          <Property Type="String" Name="MA_NV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MAT_KHAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TEN_NV" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CHUC_VU" Nullable="false" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHAN_VIEN_SELECT_ALL_Result">
+          <Property Type="String" Name="MA_NV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MAT_KHAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TEN_NV" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CHUC_VU" Nullable="false" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHAN_VIEN_SELECT_By_MaNv_Result">
+          <Property Type="String" Name="MA_NV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MAT_KHAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TEN_NV" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="CHUC_VU" Nullable="false" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_NHOM_SAN_PHAM_FIND_Result">
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_NHOM_SP" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Order" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_CHA" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_NHOM_SAN_PHAM_SELECT_ALL_Result">
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_NHOM_SP" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Order" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_CHA" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp_Result">
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_NHOM_SP" Nullable="false" MaxLength="500" />
+          <Property Type="Int32" Name="Order" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_CHA" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_FIND_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_SELECT_ALL_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_SELECT_By_MaNcc_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_SELECT_By_MaNhomSp_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_SELECT_By_MaSp_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_THANH_VIEN_FIND_Result">
+          <Property Type="String" Name="MA_TV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MAT_KHAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TEN_TV" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_THANH_VIEN_SELECT_ALL_Result">
+          <Property Type="String" Name="MA_TV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MAT_KHAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TEN_TV" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_THANH_VIEN_SELECT_By_MaTv_Result">
+          <Property Type="String" Name="MA_TV" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="MAT_KHAU" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="TEN_TV" Nullable="false" MaxLength="100" />
+          <Property Type="Boolean" Name="GIOI_TINH" Nullable="true" />
+          <Property Type="DateTime" Name="NGAY_SINH" Nullable="true" />
+          <Property Type="String" Name="TINH" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="DIA_CHI" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="LIEN_HE" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="60" />
+        </ComplexType>
+        <ComplexType Name="SP_SAN_PHAM_SELECT_By_MaNhomSp_BaoGom_MaNhomCha_Result">
+          <Property Type="Int32" Name="MA_SP" Nullable="false" />
+          <Property Type="String" Name="TEN_SP" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="THONG_SO_KY_THUAT" Nullable="true" MaxLength="Max" />
+          <Property Type="String" Name="CHITIET" Nullable="true" MaxLength="Max" />
+          <Property Type="Decimal" Name="GIA_NHAP" Nullable="true" Precision="19" />
+          <Property Type="Decimal" Name="GIA_BAN" Nullable="true" Precision="19" />
+          <Property Type="Int32" Name="SO_LUONG" Nullable="true" />
+          <Property Type="String" Name="HINH_ANH" Nullable="true" MaxLength="Max" />
+          <Property Type="DateTime" Name="NGAY_NHAP" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="CAN_NANG" Nullable="true" />
+          <Property Type="Int32" Name="TRANG_THAI" Nullable="true" />
+          <Property Type="Int32" Name="THOI_GIAN_BAO_HANH" Nullable="true" />
+          <Property Type="Int32" Name="MA_NHOM_SP" Nullable="true" />
+          <Property Type="Int32" Name="MA_NCC" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WebBanHangModelStoreContainer" CdmEntityContainer="WebBanHang">
+          <EntitySetMapping Name="CHITIET_HD">
+            <EntityTypeMapping TypeName="WebBanHangModel.CHITIET_HD">
+              <MappingFragment StoreEntitySet="CHITIET_HD">
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="MA_HD" ColumnName="MA_HD" />
+                <ScalarProperty Name="SO_LUONG_SP" ColumnName="SO_LUONG_SP" />
+                <ScalarProperty Name="TONG_GIA" ColumnName="TONG_GIA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOA_DON">
+            <EntityTypeMapping TypeName="WebBanHangModel.HOA_DON">
+              <MappingFragment StoreEntitySet="HOA_DON">
+                <ScalarProperty Name="MA_HD" ColumnName="MA_HD" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="NGAY_LAP" ColumnName="NGAY_LAP" />
+                <ScalarProperty Name="TINH_GIAO_HANG" ColumnName="TINH_GIAO_HANG" />
+                <ScalarProperty Name="DIA_CHI_GIAO_HANG" ColumnName="DIA_CHI_GIAO_HANG" />
+                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="PHI_GIAO_HANG" ColumnName="PHI_GIAO_HANG" />
+                <ScalarProperty Name="THANH_TIEN" ColumnName="THANH_TIEN" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KHACH_HANG">
+            <EntityTypeMapping TypeName="WebBanHangModel.KHACH_HANG">
+              <MappingFragment StoreEntitySet="KHACH_HANG">
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_TV" ColumnName="MA_TV" />
+                <ScalarProperty Name="TEN_KH" ColumnName="TEN_KH" />
+                <ScalarProperty Name="GIOI_TINH" ColumnName="GIOI_TINH" />
+                <ScalarProperty Name="NGAY_SINH" ColumnName="NGAY_SINH" />
+                <ScalarProperty Name="TINH" ColumnName="TINH" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHA_CUNG_CAP">
+            <EntityTypeMapping TypeName="WebBanHangModel.NHA_CUNG_CAP">
+              <MappingFragment StoreEntitySet="NHA_CUNG_CAP">
+                <ScalarProperty Name="MA_NCC" ColumnName="MA_NCC" />
+                <ScalarProperty Name="TEN_NCC" ColumnName="TEN_NCC" />
+                <ScalarProperty Name="QUOC_GIA" ColumnName="QUOC_GIA" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHAN_VIEN">
+            <EntityTypeMapping TypeName="WebBanHangModel.NHAN_VIEN">
+              <MappingFragment StoreEntitySet="NHAN_VIEN">
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="MAT_KHAU" ColumnName="MAT_KHAU" />
+                <ScalarProperty Name="TEN_NV" ColumnName="TEN_NV" />
+                <ScalarProperty Name="CHUC_VU" ColumnName="CHUC_VU" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NHOM_SAN_PHAM">
+            <EntityTypeMapping TypeName="WebBanHangModel.NHOM_SAN_PHAM">
+              <MappingFragment StoreEntitySet="NHOM_SAN_PHAM">
+                <ScalarProperty Name="MA_NHOM_SP" ColumnName="MA_NHOM_SP" />
+                <ScalarProperty Name="TEN_NHOM_SP" ColumnName="TEN_NHOM_SP" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+                <ScalarProperty Name="MA_NHOM_CHA" ColumnName="MA_NHOM_CHA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SAN_PHAM">
+            <EntityTypeMapping TypeName="WebBanHangModel.SAN_PHAM">
+              <MappingFragment StoreEntitySet="SAN_PHAM">
+                <ScalarProperty Name="NGUOI_SUA" ColumnName="NGUOI_SUA" />
+                <ScalarProperty Name="NGAY_SUA" ColumnName="NGAY_SUA" />
+                <ScalarProperty Name="SO_LAN_TRUY_CAP" ColumnName="SO_LAN_TRUY_CAP" />
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="TEN_SP" ColumnName="TEN_SP" />
+                <ScalarProperty Name="THONG_SO_KY_THUAT" ColumnName="THONG_SO_KY_THUAT" />
+                <ScalarProperty Name="CHITIET" ColumnName="CHITIET" />
+                <ScalarProperty Name="GIA_NHAP" ColumnName="GIA_NHAP" />
+                <ScalarProperty Name="GIA_BAN" ColumnName="GIA_BAN" />
+                <ScalarProperty Name="SO_LUONG" ColumnName="SO_LUONG" />
+                <ScalarProperty Name="HINH_ANH" ColumnName="HINH_ANH" />
+                <ScalarProperty Name="NGAY_NHAP" ColumnName="NGAY_NHAP" />
+                <ScalarProperty Name="CAN_NANG" ColumnName="CAN_NANG" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+                <ScalarProperty Name="THOI_GIAN_BAO_HANH" ColumnName="THOI_GIAN_BAO_HANH" />
+                <ScalarProperty Name="MA_NHOM_SP" ColumnName="MA_NHOM_SP" />
+                <ScalarProperty Name="MA_NCC" ColumnName="MA_NCC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="THANH_VIEN">
+            <EntityTypeMapping TypeName="WebBanHangModel.THANH_VIEN">
+              <MappingFragment StoreEntitySet="THANH_VIEN">
+                <ScalarProperty Name="MA_TV" ColumnName="MA_TV" />
+                <ScalarProperty Name="MAT_KHAU" ColumnName="MAT_KHAU" />
+                <ScalarProperty Name="TEN_TV" ColumnName="TEN_TV" />
+                <ScalarProperty Name="GIOI_TINH" ColumnName="GIOI_TINH" />
+                <ScalarProperty Name="NGAY_SINH" ColumnName="NGAY_SINH" />
+                <ScalarProperty Name="TINH" ColumnName="TINH" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="WebBanHangModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="WebBanHangModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_DELETE" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_FIND" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_CHITIET_HD_FIND_Result">
+                <ScalarProperty Name="MA_SP" ColumnName="MA_SP" />
+                <ScalarProperty Name="MA_HD" ColumnName="MA_HD" />
+                <ScalarProperty Name="SO_LUONG_SP" ColumnName="SO_LUONG_SP" />
+                <ScalarProperty Name="TONG_GIA" ColumnName="TONG_GIA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_INSERT" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_SELECT_By_MaHd" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_SELECT_By_MaHd">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_SELECT_By_MaSp" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_SELECT_By_MaSp">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_SELECT_By_MaSpMaHd" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_SELECT_By_MaSpMaHd">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_CHITIET_HD_UPDATE" FunctionName="WebBanHangModel.Store.SP_CHITIET_HD_UPDATE" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="WebBanHangModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="WebBanHangModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="WebBanHangModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_DELETE" FunctionName="WebBanHangModel.Store.SP_HOA_DON_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_FIND" FunctionName="WebBanHangModel.Store.SP_HOA_DON_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_HOA_DON_FIND_Result">
+                <ScalarProperty Name="MA_HD" ColumnName="MA_HD" />
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="NGAY_LAP" ColumnName="NGAY_LAP" />
+                <ScalarProperty Name="TINH_GIAO_HANG" ColumnName="TINH_GIAO_HANG" />
+                <ScalarProperty Name="DIA_CHI_GIAO_HANG" ColumnName="DIA_CHI_GIAO_HANG" />
+                <ScalarProperty Name="GHI_CHU" ColumnName="GHI_CHU" />
+                <ScalarProperty Name="PHI_GIAO_HANG" ColumnName="PHI_GIAO_HANG" />
+                <ScalarProperty Name="THANH_TIEN" ColumnName="THANH_TIEN" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_INSERT" FunctionName="WebBanHangModel.Store.SP_HOA_DON_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_HOA_DON_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_SELECT_By_MaHd" FunctionName="WebBanHangModel.Store.SP_HOA_DON_SELECT_By_MaHd">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_SELECT_By_MaKh" FunctionName="WebBanHangModel.Store.SP_HOA_DON_SELECT_By_MaKh">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_SELECT_By_MaNv" FunctionName="WebBanHangModel.Store.SP_HOA_DON_SELECT_By_MaNv">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_SELECT_By_MaSpFromChitietHd" FunctionName="WebBanHangModel.Store.SP_HOA_DON_SELECT_By_MaSpFromChitietHd">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_HOA_DON_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_HOA_DON_UPDATE" FunctionName="WebBanHangModel.Store.SP_HOA_DON_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_DELETE" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_FIND" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_KHACH_HANG_FIND_Result">
+                <ScalarProperty Name="MA_KH" ColumnName="MA_KH" />
+                <ScalarProperty Name="MA_TV" ColumnName="MA_TV" />
+                <ScalarProperty Name="TEN_KH" ColumnName="TEN_KH" />
+                <ScalarProperty Name="GIOI_TINH" ColumnName="GIOI_TINH" />
+                <ScalarProperty Name="NGAY_SINH" ColumnName="NGAY_SINH" />
+                <ScalarProperty Name="TINH" ColumnName="TINH" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_INSERT" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_SELECT_By_MaKh" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_SELECT_By_MaKh">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_SELECT_By_MaTv" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_SELECT_By_MaTv">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_KHACH_HANG_UPDATE" FunctionName="WebBanHangModel.Store.SP_KHACH_HANG_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_DELETE" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_FIND" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_NHA_CUNG_CAP_FIND_Result">
+                <ScalarProperty Name="MA_NCC" ColumnName="MA_NCC" />
+                <ScalarProperty Name="TEN_NCC" ColumnName="TEN_NCC" />
+                <ScalarProperty Name="QUOC_GIA" ColumnName="QUOC_GIA" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_INSERT" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_SELECT_By_MaNcc" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_SELECT_By_MaNcc">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_NHA_CUNG_CAP_UPDATE" FunctionName="WebBanHangModel.Store.SP_NHA_CUNG_CAP_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_DELETE" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_FIND" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_NHAN_VIEN_FIND_Result">
+                <ScalarProperty Name="MA_NV" ColumnName="MA_NV" />
+                <ScalarProperty Name="MAT_KHAU" ColumnName="MAT_KHAU" />
+                <ScalarProperty Name="TEN_NV" ColumnName="TEN_NV" />
+                <ScalarProperty Name="CHUC_VU" ColumnName="CHUC_VU" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_INSERT" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_SELECT_By_MaNv" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_SELECT_By_MaNv">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_NHAN_VIEN_UPDATE" FunctionName="WebBanHangModel.Store.SP_NHAN_VIEN_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_DELETE" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_FIND" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_NHOM_SAN_PHAM_FIND_Result">
+                <ScalarProperty Name="MA_NHOM_SP" ColumnName="MA_NHOM_SP" />
+                <ScalarProperty Name="TEN_NHOM_SP" ColumnName="TEN_NHOM_SP" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="TRANG_THAI" ColumnName="TRANG_THAI" />
+                <ScalarProperty Name="MA_NHOM_CHA" ColumnName="MA_NHOM_CHA" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_INSERT" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_NHOM_SAN_PHAM_UPDATE" FunctionName="WebBanHangModel.Store.SP_NHOM_SAN_PHAM_UPDATE" />
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="WebBanHangModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_DELETE" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_FIND" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_FIND">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_INSERT" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_By_MaNcc" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_By_MaNcc">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_By_MaNhomSp" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_By_MaNhomSp">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_By_MaSp" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_By_MaSp">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_UPDATE" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_UPDATE" />
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_DELETE" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_DELETE" />
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_FIND" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_FIND">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="WebBanHangModel.SP_THANH_VIEN_FIND_Result">
+                <ScalarProperty Name="MA_TV" ColumnName="MA_TV" />
+                <ScalarProperty Name="MAT_KHAU" ColumnName="MAT_KHAU" />
+                <ScalarProperty Name="TEN_TV" ColumnName="TEN_TV" />
+                <ScalarProperty Name="GIOI_TINH" ColumnName="GIOI_TINH" />
+                <ScalarProperty Name="NGAY_SINH" ColumnName="NGAY_SINH" />
+                <ScalarProperty Name="TINH" ColumnName="TINH" />
+                <ScalarProperty Name="DIA_CHI" ColumnName="DIA_CHI" />
+                <ScalarProperty Name="LIEN_HE" ColumnName="LIEN_HE" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_INSERT" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_INSERT" />
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_SELECT_ALL" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_SELECT_ALL">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_SELECT_By_MaTv" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_SELECT_By_MaTv">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_SELECT_Paged" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_SELECT_Paged" />
+          <FunctionImportMapping FunctionImportName="SP_THANH_VIEN_UPDATE" FunctionName="WebBanHangModel.Store.SP_THANH_VIEN_UPDATE" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="WebBanHangModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="SP_SAN_PHAM_SELECT_By_MaNhomSp_BaoGom_MaNhomCha" FunctionName="WebBanHangModel.Store.SP_SAN_PHAM_SELECT_By_MaNhomSp_BaoGom_MaNhomCha">
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

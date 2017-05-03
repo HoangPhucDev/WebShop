@@ -1,0 +1,72 @@
+﻿@model IEnumerable<ModelWebBanHang.THANH_VIEN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section tieude{Danh Sách Thành Viên}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MA_TV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TEN_TV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GIOI_TINH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAY_SINH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TINH)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LIEN_HE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MA_TV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEN_TV)
+        </td>
+        <td>
+            @(item.GIOI_TINH==true?"Nam":"Nữ")
+        </td>
+        <td>
+            @String.Format("{0:d}",item.NGAY_SINH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TINH)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.LIEN_HE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MA_TV }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MA_TV }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MA_TV })
+        </td>
+    </tr>
+}
+
+</table>

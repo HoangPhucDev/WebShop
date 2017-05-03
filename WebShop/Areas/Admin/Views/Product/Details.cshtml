@@ -1,0 +1,166 @@
+﻿@model IEnumerable<ModelWebBanHang.SAN_PHAM>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section tieude{Chi Tiết Sản Phẩm}
+
+@foreach (var item in Model)
+{
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HINH_ANH)
+        </dt>
+
+        <dd>
+            <img src="~/Content/img/@item.HINH_ANH" width="200px" height="200px" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_SP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.MA_SP)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_SP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.TEN_SP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIA_NHAP)
+        </dt>
+
+        <dd>
+            @String.Format("{0:c0}", item.GIA_NHAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIA_BAN)
+        </dt>
+
+        <dd>
+            @String.Format("{0:c0}", item.GIA_BAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SO_LUONG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.SO_LUONG)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAY_NHAP)
+        </dt>
+
+        <dd>
+            @String.Format("{0:d} - {0:T}", item.NGAY_NHAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAN_NANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.CAN_NANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANG_THAI)
+        </dt>
+
+        <dd>
+            @(item.TRANG_THAI == 1 ? "Kích Hoạt" : "Khóa")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.THOI_GIAN_BAO_HANH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.THOI_GIAN_BAO_HANH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SO_LAN_TRUY_CAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.SO_LAN_TRUY_CAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHA_CUNG_CAP.TEN_NCC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.NHA_CUNG_CAP.TEN_NCC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAY_SUA)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(modelItem => item.NGAY_SUA)*@
+            @(item.NGAY_SUA == null ? "Chưa Sửa" : item.NGAY_SUA.ToString())
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGUOI_SUA)
+        </dt>
+
+        <dd>
+            @(item.NGUOI_SUA == null ? "Chưa Sửa" : item.NGUOI_SUA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHOM_SAN_PHAM.TEN_NHOM_SP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(modelItem => item.NHOM_SAN_PHAM.TEN_NHOM_SP)
+        </dd>
+
+      
+    </dl>
+    <div class="panel-body">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="active">
+                <a href="#mota" data-toggle="tab">@Html.DisplayNameFor(model => model.CHITIET)</a>
+            </li>
+            <li>
+                <a href="#thongsokythuat" data-toggle="tab"> @Html.DisplayNameFor(model => model.THONG_SO_KY_THUAT)</a>
+            </li>
+        </ul>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="mota">
+
+                @Html.Raw(item.CHITIET)
+
+            </div>
+            <div class="tab-pane fade" id="thongsokythuat">
+                @Html.Raw(item.THONG_SO_KY_THUAT)
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = item.MA_SP }) |
+   
+    @Html.ActionLink("Back to List", "Index")
+</p>
+}

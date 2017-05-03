@@ -1,0 +1,8 @@
+﻿@model List<ModelWebBanHang.NHOM_SAN_PHAM>
+
+@foreach (var item in Model)
+{
+    <li>
+        @Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP })
+    </li>
+}

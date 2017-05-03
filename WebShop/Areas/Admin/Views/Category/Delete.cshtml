@@ -1,0 +1,56 @@
+﻿@model ModelWebBanHang.NHOM_SAN_PHAM
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section tieude{Xóa Nhóm Sản Phẩm}
+
+<h3>BẠN CHẮC CHẮN MUỐN XÓA?</h3>
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_NHOM_SP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_NHOM_SP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANG_THAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANG_THAI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_NHOM_CHA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA_NHOM_CHA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

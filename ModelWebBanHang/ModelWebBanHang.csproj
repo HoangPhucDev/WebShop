@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A93447E2-011E-481E-9967-72404AE5A216}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ModelWebBanHang</RootNamespace>
+    <AssemblyName>ModelWebBanHang</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CHITIET_HD.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\ChiTietHoaDonDAO.cs" />
+    <Compile Include="DAO\HoaDonDAO.cs" />
+    <Compile Include="DAO\KhachHangDAO.cs" />
+    <Compile Include="DAO\NhaCungCapDAO.cs" />
+    <Compile Include="DAO\NhanVienDAO.cs" />
+    <Compile Include="DAO\NhomSanPhamDAO.cs" />
+    <Compile Include="DAO\SanPhamDAO.cs" />
+    <Compile Include="DAO\ThanhVienDAO.cs" />
+    <Compile Include="HOA_DON.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="KHACH_HANG.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHAN_VIEN.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHA_CUNG_CAP.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NHOM_SAN_PHAM.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SAN_PHAM.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_CHITIET_HD_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_CHITIET_HD_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_CHITIET_HD_SELECT_By_MaHd_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_CHITIET_HD_SELECT_By_MaSpMaHd_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_CHITIET_HD_SELECT_By_MaSp_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_HOA_DON_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_HOA_DON_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_HOA_DON_SELECT_By_MaHd_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_HOA_DON_SELECT_By_MaKh_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_HOA_DON_SELECT_By_MaNv_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_HOA_DON_SELECT_By_MaSpFromChitietHd_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_KHACH_HANG_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_KHACH_HANG_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_KHACH_HANG_SELECT_By_MaKh_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_KHACH_HANG_SELECT_By_MaTv_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHAN_VIEN_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHAN_VIEN_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHAN_VIEN_SELECT_By_MaNv_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHA_CUNG_CAP_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHA_CUNG_CAP_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHA_CUNG_CAP_SELECT_By_MaNcc_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHOM_SAN_PHAM_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHOM_SAN_PHAM_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_SELECT_By_MaNcc_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_SELECT_By_MaNhomSp_BaoGom_MaNhomCha_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_SELECT_By_MaNhomSp_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_SAN_PHAM_SELECT_By_MaSp_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THANH_VIEN_FIND_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THANH_VIEN_SELECT_ALL_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_THANH_VIEN_SELECT_By_MaTv_Result.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="THANH_VIEN.cs">
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebBanHang.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBanHang.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebBanHang.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBanHang.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WebBanHang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="WebBanHang.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>WebBanHang.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="WebBanHang.edmx.diagram">
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="WebBanHang.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+      <LastGenOutput>WebBanHang.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="WebBanHang.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>WebBanHang.edmx</DependentUpon>
+      <LastGenOutput>WebBanHang.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

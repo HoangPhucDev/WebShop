@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+
+    <meta name="keywords" content="">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,500,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap and Font Awesome css -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    @*<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">*@
+    <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Css animations  -->
+    <link href="~/Content/css/animate.css" rel="stylesheet">
+
+    <!-- Theme stylesheet, if possible do not edit this stylesheet -->
+    @Styles.Render("~/Content/css/style.default.css")
+    @*<link href="~/Content/css/style.default.css" rel="stylesheet" id="theme-stylesheet">*@
+
+    <!-- Custom stylesheet - for your changes -->
+
+    <link href="~/Content/css/custom.css" rel="stylesheet">
+
+    <!-- Responsivity for older IE -->
+    <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Favicon and apple touch icons-->
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico" type="~/Content/image/x-icon" />
+    <link rel="apple-touch-icon" href="~/Content/img/apple-touch-icon.png" />
+    <link rel="apple-touch-icon" sizes="57x57" href="~/Content/img/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="~/Content/img/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/img/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="~/Content/img/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="~/Content/img/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="~/Content/img/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="~/Content/img/apple-touch-icon-152x152.png" />
+
+</head>
+
+<body>
+
+    <div id="all">
+        <header>
+
+            <!-- *** TOP ***
+            _________________________________________________________ -->
+            <div id="top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-5 contact">
+                            <p class="hidden-sm hidden-xs"><span class="glyphicon glyphicon-phone-alt"></span> Liên Hệ: 0923911007 Hoặc nhp1107@gmail.com</p>
+                            <p class="hidden-md hidden-lg">
+                                <a href="#" data-animate-hover="pulse"><i class="fa fa-phone"></i></a>  <a href="#" data-animate-hover="pulse"><i class="fa fa-envelope"></i></a>
+                            </p>
+                        </div>
+                        <div class="col-xs-7">
+
+
+                            <div class="login">
+                                Xin Chào @RenderSection("ThanhVien") !
+                                <a href="@Url.Action("Logout","Account")"><i class="fa fa-sign-out"></i> <span class="hidden-xs text-uppercase">Thoát</span></a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- *** TOP END *** -->
+            <!-- *** NAVBAR ***
+            _________________________________________________________ -->
+
+            @Html.Action("NavBarPartial", "Home")
+
+            <!-- *** NAVBAR END *** -->
+
+        </header>
+
+        <!-- *** LOGIN MODAL ***
+        _________________________________________________________ -->
+
+        @RenderPage("_LoginPartial.cshtml")
+
+        <!-- *** LOGIN MODAL END *** -->
+
+        <div id="heading-breadcrumbs">
+            <div class="container">
+                <ul class="breadcrumb">
+                    <li>@Html.ActionLink("Trang Chủ", "Index", "Home")</li>
+                    @RenderSection("breadcrumbs")
+                </ul>
+            </div>
+        </div>
+
+        <section>
+            <div class="container">
+
+                <div class="row">
+
+                        <div class="col-md-3">
+                            <!-- *** CUSTOMER MENU ***
+        _________________________________________________________ -->
+                            <div class="panel panel-default sidebar-menu">
+
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Customer section</h3>
+                                </div>
+
+                                <div class="panel-body">
+
+                                    <ul class="nav nav-pills nav-stacked">
+                                        <li class="active">
+                                            <a href="customer-orders.html"><i class="fa fa-list"></i> Hóa Đơn</a>
+                                        </li>
+                                        <li>
+                                            <a href="customer-wishlist.html"><i class="fa fa-heart"></i> Danh Sách Yêu Thích</a>
+                                        </li>
+                                        <li>
+                                            <a href="customer-account.html"><i class="fa fa-user"></i> Tài Khoảng</a>
+                                        </li>
+                                        <li>
+                                            <a href="@Url.Action("Logout","Account")"><i class="fa fa-sign-out"></i> Thoát</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!-- /.col-md-3 -->
+                            <!-- *** CUSTOMER MENU END *** -->
+                        </div>
+                        <!-- *** RIGHT COLUMN END *** -->
+
+
+
+
+                    @RenderBody()
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </section>
+
+        @RenderPage("_Footer.cshtml")   

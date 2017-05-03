@@ -1,0 +1,82 @@
+﻿@model ModelWebBanHang.THANH_VIEN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section tieude{Chi Tiết Thành Viên}
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_TV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MA_TV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_TV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_TV)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GIOI_TINH)
+        </dt>
+
+        <dd>
+            @(Model.GIOI_TINH==true ? "Nam" : "Nữ")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAY_SINH)
+        </dt>
+
+        <dd>
+            @String.Format("{0:d}",Model.NGAY_SINH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TINH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TINH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIA_CHI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIA_CHI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LIEN_HE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LIEN_HE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MA_TV }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

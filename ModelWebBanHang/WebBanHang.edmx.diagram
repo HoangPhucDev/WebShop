@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d8abbf1ad55e489382c65a654e07c21a" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="WebBanHangModel.CHITIET_HD" Width="1.5" PointX="6" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.HOA_DON" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.KHACH_HANG" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.NHA_CUNG_CAP" Width="1.5" PointX="0.625" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.NHAN_VIEN" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.NHOM_SAN_PHAM" Width="1.5" PointX="0.625" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.SAN_PHAM" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WebBanHangModel.THANH_VIEN" Width="1.5" PointX="1.5" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="WebBanHangModel.FK_CHITIET__REFERENCE_HOA_DON" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangModel.FK_CHITIET__REFERENCE_SAN_PHAM" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangModel.FK_HOA_DON_REFERENCE_KHACH_HA" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangModel.FK_HOA_DON_REFERENCE_NHAN_VIE" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangModel.FK_KHACH_HA_REFERENCE_THANH_VI" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangModel.FK_SAN_PHAM_REFERENCE_NHA_CUNG" ManuallyRouted="false" />
+        <AssociationConnector Association="WebBanHangModel.FK_SAN_PHAM_REFERENCE_NHOM_SAN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

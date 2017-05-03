@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ModelWebBanHang.NHAN_VIEN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section tieude{Danh Sách Nhân Viên}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MA_NV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TEN_NV)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CHUC_VU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LIEN_HE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MA_NV)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEN_NV)
+        </td>
+        <td>
+            @(item.CHUC_VU==1?"Quản Trị Viên":"Nhân Viên")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LIEN_HE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MA_NV }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MA_NV }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MA_NV })
+        </td>
+    </tr>
+}
+
+</table>

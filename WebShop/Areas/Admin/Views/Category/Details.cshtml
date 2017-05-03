@@ -1,0 +1,50 @@
+﻿@model ModelWebBanHang.NHOM_SAN_PHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section tieude{Chi Tiết Nhóm Sản Phẩm}
+
+<div>
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TEN_NHOM_SP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TEN_NHOM_SP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANG_THAI)
+        </dt>
+
+        <dd>
+            @(Model.TRANG_THAI == 1 ? "Kích Họat" : "Khóa")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MA_NHOM_CHA)
+        </dt>
+
+        <dd>
+            @(Model.MA_NHOM_CHA == 0 ? "Danh Mục Gốc" : Model.MA_NHOM_CHA.ToString())
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MA_NHOM_SP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

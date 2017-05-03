@@ -1,0 +1,155 @@
+﻿@model ModelWebBanHang.THANH_VIEN
+@{
+    Layout = "~/Views/Shared/_LayoutAccount.cshtml";
+}
+@{
+    ViewBag.Title = "Thành Viên";
+}
+@section breadcrumbs{<li>@Html.Label("Tài Khoảng Thành Viên") </li>}
+@section ThanhVien {@Html.DisplayFor(model => model.TEN_TV)
+}
+<div id="content" class="clearfix">
+
+    <div class="container">
+
+        <div class="row">
+            <!-- *** LEFT COLUMN ***
+            _________________________________________________________ -->
+
+            <div class="col-md-9 clearfix" id="customer-account">
+
+                <p class="lead">Change your personal details or your password here.</p>
+                <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+
+                <div class="box">
+
+                    <div class="heading">
+                        <h3 class="text-uppercase">Change password</h3>
+                    </div>
+
+                    @using (Html.BeginForm())
+                    {
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="password_old">Old password</label>
+                                    <input type="password" class="form-control" id="password_old">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="password_1">New password</label>
+                                    <input type="password" class="form-control" id="password_1">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="password_2">Retype new password</label>
+                                    <input type="password" class="form-control" id="password_2">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Save new password</button>
+                        </div>
+                    }
+
+                </div>
+                <!-- /.box -->
+
+
+
+
+                <div class="box clearfix">
+                    <div class="heading">
+                        <h3 class="text-uppercase">Thông Tin Thành Viên</h3>
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="firstname">Họ Tên</label>
+                                    @Html.EditorFor(model => model.TEN_TV, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label for="sex">Giới Tính</label>
+                                        @Html.DropDownList("GIOI_TINH", new List<SelectListItem> {
+                                                           new SelectListItem() { Selected = true, Text = "Nam", Value = "true" },
+                                                           new SelectListItem() { Selected = false, Text = "Nữ", Value = "false" }},
+                                htmlAttributes: new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label for="birthday">Ngày Sinh</label>
+                                    <input type="text" value="@Model.NGAY_SINH" class="form-control datepicker" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.row -->
+
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="street">Địa Chỉ</label>
+                                    @Html.EditorFor(model => model.DIA_CHI, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-3">
+                                <div class="form-group">
+                                    <label for="state">Tỉnh</label>
+                                    @Html.EditorFor(model => model.TINH, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /.row -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="phone">Số Điện Thoại</label>
+                                    @Html.EditorFor(model => model.LIEN_HE, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="email_account">Email</label>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                            </div>
+                        </div>
+                            <div class="col-sm-12 text-center">
+                                <button type="submit" class="btn btn-template-main"><i class="fa fa-save"></i> Save changes</button>
+
+                            </div>
+                       
+                    }
+                        
+            </div>
+                    
+
+                </div>
+
+            </div>
+            <!-- /.col-md-9 -->
+            <!-- *** LEFT COLUMN END *** -->
+            <!-- *** RIGHT COLUMN ***
+            _________________________________________________________ -->
+
+            
+        </div>
+        <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- /#content -->

@@ -1,0 +1,96 @@
+﻿@model List<ModelWebBanHang.NHOM_SAN_PHAM>
+
+<nav class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+
+    <nav class="navbar navbar-default yamm" role="navigation" id="navbar">
+
+        <div class="container">   
+            
+                <div class="navbar-header">
+                    <a class="navbar-brand home" href="~/">
+                        <img src="~/Content/img/logo.png" alt="Universal logo" class="hidden-xs hidden-sm">
+                        <img src="~/Content/img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Hoang Phuc Shop</span>
+                    </a>
+                    <div class="navbar-buttons">
+                        <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                    </div>
+                </div>
+                <!--/.navbar-header -->
+            
+                @using (Html.BeginForm("Search", "Home",FormMethod.Get,new {@class="col-lg-6", @style="padding-top:10px" }))
+                {
+                        <div class="input-group input-group-lg">
+                            @Html.TextBox("Name", "", new {@class="form-control", @placeholder="Tìm Kiếm Sản Phẩm"  })
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-template-primary"><i class="fa fa-search"></i></button>
+                            </span>
+                        </div>
+                   } 
+
+
+
+                <!--/.nav-collapse -->
+
+            <div class="navbar-collapse collapse" id="navigation">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown active">
+                        @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
+                    </li>
+
+                    <li class="dropdown use-yamm yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">SẢN PHẨM<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <img src="~/Content/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
+                                        </div>
+                                        @foreach (var item in Model)
+                                        {
+                                            <div class="col-sm-3">
+                                                <h5>@Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP }@*, new { @style = "font-family:Roboto, Helvetica, Arial, sans-serif; font-weight: 900;line-height: 1.1;color: #333333;"}*@)</h5>
+                                                <ul>
+                                                    @Html.Action("SubMenuPartial", "Home", new { ParentId = item.MA_NHOM_SP })
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- ========== FULL WIDTH MEGAMENU ================== -->
+                    <!-- ========== FULL WIDTH MEGAMENU END ================== -->
+
+                    <li class="dropdown">
+                        @Html.ActionLink("LIÊN HỆ", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
+                    </li>
+
+                    <li class="dropdown">
+                        @Html.ActionLink("GIỚI THIỆU", "About", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+                <!--/.nav-collapse -->
+
+
+
+          
+
+        </div>
+
+
+    </nav>
+    <!-- /#navbar -->
+
+</nav>
+
+

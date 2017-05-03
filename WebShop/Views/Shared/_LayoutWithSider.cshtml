@@ -1,0 +1,27 @@
+﻿@RenderPage("_Header.cshtml")
+
+        <!-- *** LOGIN MODAL ***
+        _________________________________________________________ -->
+
+      @RenderPage("_LoginPartial.cshtml")
+
+        <!-- *** LOGIN MODAL END *** -->
+        
+        @RenderPage("_Slider.cshtml")
+
+
+
+
+        <section>
+            <div class="container">
+
+                <div class="row">
+                    @RenderBody()
+                </div>
+
+            </div>
+            <!-- /.container -->
+
+        </section>
+
+       @RenderPage("_Footer.cshtml")

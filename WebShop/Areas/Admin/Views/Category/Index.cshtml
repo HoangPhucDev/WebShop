@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ModelWebBanHang.NHOM_SAN_PHAM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@section tieude{Danh Sách Nhóm Sản Phẩm}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TEN_NHOM_SP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TRANG_THAI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MA_NHOM_CHA)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TEN_NHOM_SP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order)
+        </td>
+        <td>
+            @(item.TRANG_THAI==1?"Kích Họat":"Khóa")
+        </td>
+        <td>
+            @(item.MA_NHOM_CHA==0?"Danh Mục Gốc":Model.Where(p=>p.MA_NHOM_SP== item.MA_NHOM_CHA).Select(p2=>p2.TEN_NHOM_SP).SingleOrDefault())
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MA_NHOM_SP }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MA_NHOM_SP }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MA_NHOM_SP })
+        </td>
+    </tr>
+}
+
+</table>

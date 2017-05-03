@@ -1,0 +1,878 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="WebBanHang" Class="WebBanHangDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=WebBanHang;Integrated Security=True" SettingsObjectName="Model.Properties.Settings" SettingsPropertyName="WebBanHangConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.CHITIET_HD" Member="CHITIET_HDs">
+    <Type Name="CHITIET_HD">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SO_LUONG_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG_GIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="HOA_DON_CHITIET_HD" Member="HOA_DON" ThisKey="MA_HD" OtherKey="MA_HD" Type="HOA_DON" IsForeignKey="true" />
+      <Association Name="SAN_PHAM_CHITIET_HD" Member="SAN_PHAM" ThisKey="MA_SP" OtherKey="MA_SP" Type="SAN_PHAM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THANH_VIEN" Member="THANH_VIENs">
+    <Type Name="THANH_VIEN">
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_TV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Association Name="THANH_VIEN_KHACH_HANG" Member="KHACH_HANGs" ThisKey="MA_TV" OtherKey="MA_TV" Type="KHACH_HANG" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HOA_DON" Member="HOA_DONs">
+    <Type Name="HOA_DON">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="HOA_DON_CHITIET_HD" Member="CHITIET_HDs" ThisKey="MA_HD" OtherKey="MA_HD" Type="CHITIET_HD" />
+      <Association Name="KHACH_HANG_HOA_DON" Member="KHACH_HANG" ThisKey="MA_KH" OtherKey="MA_KH" Type="KHACH_HANG" IsForeignKey="true" />
+      <Association Name="NHAN_VIEN_HOA_DON" Member="NHAN_VIEN" ThisKey="MA_NV" OtherKey="MA_NV" Type="NHAN_VIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KHACH_HANG" Member="KHACH_HANGs">
+    <Type Name="KHACH_HANG">
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TEN_KH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Association Name="KHACH_HANG_HOA_DON" Member="HOA_DONs" ThisKey="MA_KH" OtherKey="MA_KH" Type="HOA_DON" />
+      <Association Name="THANH_VIEN_KHACH_HANG" Member="THANH_VIEN" ThisKey="MA_TV" OtherKey="MA_TV" Type="THANH_VIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHA_CUNG_CAP" Member="NHA_CUNG_CAPs">
+    <Type Name="NHA_CUNG_CAP">
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_NCC" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="QUOC_GIA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Association Name="NHA_CUNG_CAP_SAN_PHAM" Member="SAN_PHAMs" ThisKey="MA_NCC" OtherKey="MA_NCC" Type="SAN_PHAM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHAN_VIEN" Member="NHAN_VIENs">
+    <Type Name="NHAN_VIEN">
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CHUC_VU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+      <Association Name="NHAN_VIEN_HOA_DON" Member="HOA_DONs" ThisKey="MA_NV" OtherKey="MA_NV" Type="HOA_DON" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHOM_SAN_PHAM" Member="NHOM_SAN_PHAMs">
+    <Type Name="NHOM_SAN_PHAM">
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_NHOM_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_CHA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NHOM_SAN_PHAM_SAN_PHAM" Member="SAN_PHAMs" ThisKey="MA_NHOM_SP" OtherKey="MA_NHOM_SP" Type="SAN_PHAM" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SAN_PHAM" Member="SAN_PHAMs">
+    <Type Name="SAN_PHAM">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="SAN_PHAM_CHITIET_HD" Member="CHITIET_HDs" ThisKey="MA_SP" OtherKey="MA_SP" Type="CHITIET_HD" />
+      <Association Name="NHA_CUNG_CAP_SAN_PHAM" Member="NHA_CUNG_CAP" ThisKey="MA_NCC" OtherKey="MA_NCC" Type="NHA_CUNG_CAP" IsForeignKey="true" />
+      <Association Name="NHOM_SAN_PHAM_SAN_PHAM" Member="NHOM_SAN_PHAM" ThisKey="MA_NHOM_SP" OtherKey="MA_NHOM_SP" Type="NHOM_SAN_PHAM" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.SP_CHITIET_HD_DELETE" Method="SP_CHITIET_HD_DELETE">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_UPDATE" Method="SP_THANH_VIEN_UPDATE">
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="OriginalMaTv" Parameter="originalMaTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenTv" Parameter="tenTv" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="GioiTinh" Parameter="gioiTinh" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NgaySinh" Parameter="ngaySinh" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Tinh" Parameter="tinh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_FIND" Method="SP_CHITIET_HD_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SoLuongSp" Parameter="soLuongSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TongGia" Parameter="tongGia" Type="System.Decimal" DbType="Money" />
+    <ElementType Name="SP_CHITIET_HD_FINDResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SO_LUONG_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG_GIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_INSERT" Method="SP_CHITIET_HD_INSERT">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SoLuongSp" Parameter="soLuongSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TongGia" Parameter="tongGia" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_SELECT_ALL" Method="SP_CHITIET_HD_SELECT_ALL">
+    <ElementType Name="SP_CHITIET_HD_SELECT_ALLResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SO_LUONG_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG_GIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_SELECT_By_MaHd" Method="SP_CHITIET_HD_SELECT_By_MaHd">
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_CHITIET_HD_SELECT_By_MaHdResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SO_LUONG_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG_GIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_SELECT_By_MaSp" Method="SP_CHITIET_HD_SELECT_By_MaSp">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_CHITIET_HD_SELECT_By_MaSpResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SO_LUONG_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG_GIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_SELECT_By_MaSpMaHd" Method="SP_CHITIET_HD_SELECT_By_MaSpMaHd">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_CHITIET_HD_SELECT_By_MaSpMaHdResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SO_LUONG_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONG_GIA" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_SELECT_Paged" Method="SP_CHITIET_HD_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_CHITIET_HD_UPDATE" Method="SP_CHITIET_HD_UPDATE">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OriginalMaSp" Parameter="originalMaSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Parameter Name="OriginalMaHd" Parameter="originalMaHd" Type="System.Int32" DbType="Int" />
+    <Parameter Name="SoLuongSp" Parameter="soLuongSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TongGia" Parameter="tongGia" Type="System.Decimal" DbType="Money" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_DELETE" Method="SP_HOA_DON_DELETE">
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_FIND" Method="SP_HOA_DON_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NgayLap" Parameter="ngayLap" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TinhGiaoHang" Parameter="tinhGiaoHang" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChiGiaoHang" Parameter="diaChiGiaoHang" Type="System.String" DbType="NText" />
+    <Parameter Name="GhiChu" Parameter="ghiChu" Type="System.String" DbType="NText" />
+    <Parameter Name="PhiGiaoHang" Parameter="phiGiaoHang" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="ThanhTien" Parameter="thanhTien" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_HOA_DON_FINDResult">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_INSERT" Method="SP_HOA_DON_INSERT">
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NgayLap" Parameter="ngayLap" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TinhGiaoHang" Parameter="tinhGiaoHang" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChiGiaoHang" Parameter="diaChiGiaoHang" Type="System.String" DbType="NText" />
+    <Parameter Name="GhiChu" Parameter="ghiChu" Type="System.String" DbType="NText" />
+    <Parameter Name="PhiGiaoHang" Parameter="phiGiaoHang" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="ThanhTien" Parameter="thanhTien" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_SELECT_ALL" Method="SP_HOA_DON_SELECT_ALL">
+    <ElementType Name="SP_HOA_DON_SELECT_ALLResult">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_SELECT_By_MaHd" Method="SP_HOA_DON_SELECT_By_MaHd">
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_HOA_DON_SELECT_By_MaHdResult">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_SELECT_By_MaKh" Method="SP_HOA_DON_SELECT_By_MaKh">
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_HOA_DON_SELECT_By_MaKhResult">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_SELECT_By_MaNv" Method="SP_HOA_DON_SELECT_By_MaNv">
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_HOA_DON_SELECT_By_MaNvResult">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_SELECT_By_MaSpFromChitietHd" Method="SP_HOA_DON_SELECT_By_MaSpFromChitietHd">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_HOA_DON_SELECT_By_MaSpFromChitietHdResult">
+      <Column Name="MA_HD" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="NGAY_LAP" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TINH_GIAO_HANG" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI_GIAO_HANG" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GHI_CHU" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="PHI_GIAO_HANG" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="THANH_TIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_SELECT_Paged" Method="SP_HOA_DON_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_HOA_DON_UPDATE" Method="SP_HOA_DON_UPDATE">
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="NgayLap" Parameter="ngayLap" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="TinhGiaoHang" Parameter="tinhGiaoHang" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChiGiaoHang" Parameter="diaChiGiaoHang" Type="System.String" DbType="NText" />
+    <Parameter Name="GhiChu" Parameter="ghiChu" Type="System.String" DbType="NText" />
+    <Parameter Name="PhiGiaoHang" Parameter="phiGiaoHang" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="ThanhTien" Parameter="thanhTien" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_DELETE" Method="SP_KHACH_HANG_DELETE">
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_FIND" Method="SP_KHACH_HANG_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenKh" Parameter="tenKh" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="GioiTinh" Parameter="gioiTinh" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NgaySinh" Parameter="ngaySinh" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Tinh" Parameter="tinh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <ElementType Name="SP_KHACH_HANG_FINDResult">
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TEN_KH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_INSERT" Method="SP_KHACH_HANG_INSERT">
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenKh" Parameter="tenKh" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="GioiTinh" Parameter="gioiTinh" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NgaySinh" Parameter="ngaySinh" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Tinh" Parameter="tinh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_SELECT_ALL" Method="SP_KHACH_HANG_SELECT_ALL">
+    <ElementType Name="SP_KHACH_HANG_SELECT_ALLResult">
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TEN_KH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_SELECT_By_MaKh" Method="SP_KHACH_HANG_SELECT_By_MaKh">
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_KHACH_HANG_SELECT_By_MaKhResult">
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TEN_KH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_SELECT_By_MaTv" Method="SP_KHACH_HANG_SELECT_By_MaTv">
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_KHACH_HANG_SELECT_By_MaTvResult">
+      <Column Name="MA_KH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="TEN_KH" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_SELECT_Paged" Method="SP_KHACH_HANG_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_KHACH_HANG_UPDATE" Method="SP_KHACH_HANG_UPDATE">
+    <Parameter Name="MaKh" Parameter="maKh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenKh" Parameter="tenKh" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="GioiTinh" Parameter="gioiTinh" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NgaySinh" Parameter="ngaySinh" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Tinh" Parameter="tinh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_DELETE" Method="SP_NHA_CUNG_CAP_DELETE">
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_FIND" Method="SP_NHA_CUNG_CAP_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TenNcc" Parameter="tenNcc" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="QuocGia" Parameter="quocGia" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <ElementType Name="SP_NHA_CUNG_CAP_FINDResult">
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NCC" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="QUOC_GIA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_INSERT" Method="SP_NHA_CUNG_CAP_INSERT">
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="TenNcc" Parameter="tenNcc" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="QuocGia" Parameter="quocGia" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_SELECT_ALL" Method="SP_NHA_CUNG_CAP_SELECT_ALL">
+    <ElementType Name="SP_NHA_CUNG_CAP_SELECT_ALLResult">
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NCC" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="QUOC_GIA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_SELECT_By_MaNcc" Method="SP_NHA_CUNG_CAP_SELECT_By_MaNcc">
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_NHA_CUNG_CAP_SELECT_By_MaNccResult">
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NCC" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="QUOC_GIA" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_SELECT_Paged" Method="SP_NHA_CUNG_CAP_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHA_CUNG_CAP_UPDATE" Method="SP_NHA_CUNG_CAP_UPDATE">
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TenNcc" Parameter="tenNcc" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="QuocGia" Parameter="quocGia" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_DELETE" Method="SP_NHAN_VIEN_DELETE">
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_FIND" Method="SP_NHAN_VIEN_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenNv" Parameter="tenNv" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ChucVu" Parameter="chucVu" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <ElementType Name="SP_NHAN_VIEN_FINDResult">
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CHUC_VU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_INSERT" Method="SP_NHAN_VIEN_INSERT">
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenNv" Parameter="tenNv" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ChucVu" Parameter="chucVu" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_SELECT_ALL" Method="SP_NHAN_VIEN_SELECT_ALL">
+    <ElementType Name="SP_NHAN_VIEN_SELECT_ALLResult">
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CHUC_VU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_SELECT_By_MaNv" Method="SP_NHAN_VIEN_SELECT_By_MaNv">
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_NHAN_VIEN_SELECT_By_MaNvResult">
+      <Column Name="MA_NV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CHUC_VU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_SELECT_Paged" Method="SP_NHAN_VIEN_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHAN_VIEN_UPDATE" Method="SP_NHAN_VIEN_UPDATE">
+    <Parameter Name="MaNv" Parameter="maNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="OriginalMaNv" Parameter="originalMaNv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenNv" Parameter="tenNv" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="ChucVu" Parameter="chucVu" Type="System.Int32" DbType="Int" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_DELETE" Method="SP_NHOM_SAN_PHAM_DELETE">
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_FIND" Method="SP_NHOM_SAN_PHAM_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TenNhomSp" Parameter="tenNhomSp" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="Order" Parameter="order" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNhomCha" Parameter="maNhomCha" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_NHOM_SAN_PHAM_FINDResult">
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NHOM_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_CHA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_INSERT" Method="SP_NHOM_SAN_PHAM_INSERT">
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="TenNhomSp" Parameter="tenNhomSp" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="Order" Parameter="order" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNhomCha" Parameter="maNhomCha" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_SELECT_ALL" Method="SP_NHOM_SAN_PHAM_SELECT_ALL">
+    <ElementType Name="SP_NHOM_SAN_PHAM_SELECT_ALLResult">
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NHOM_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_CHA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp" Method="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSp">
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_NHOM_SAN_PHAM_SELECT_By_MaNhomSpResult">
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_NHOM_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="[Order]" Member="Order" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_CHA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_SELECT_Paged" Method="SP_NHOM_SAN_PHAM_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_NHOM_SAN_PHAM_UPDATE" Method="SP_NHOM_SAN_PHAM_UPDATE">
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TenNhomSp" Parameter="tenNhomSp" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="Order" Parameter="order" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNhomCha" Parameter="maNhomCha" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_DELETE" Method="SP_SAN_PHAM_DELETE">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_FIND" Method="SP_SAN_PHAM_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TenSp" Parameter="tenSp" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="ThongSoKyThuat" Parameter="thongSoKyThuat" Type="System.String" DbType="NText" />
+    <Parameter Name="Chitiet" Parameter="chitiet" Type="System.String" DbType="NText" />
+    <Parameter Name="GiaNhap" Parameter="giaNhap" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="GiaBan" Parameter="giaBan" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="SoLuong" Parameter="soLuong" Type="System.Int32" DbType="Int" />
+    <Parameter Name="HinhAnh" Parameter="hinhAnh" Type="System.String" DbType="NText" />
+    <Parameter Name="NgayNhap" Parameter="ngayNhap" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CanNang" Parameter="canNang" Type="System.Double" DbType="Float" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ThoiGianBaoHanh" Parameter="thoiGianBaoHanh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SAN_PHAM_FINDResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_INSERT" Method="SP_SAN_PHAM_INSERT">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="TenSp" Parameter="tenSp" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="ThongSoKyThuat" Parameter="thongSoKyThuat" Type="System.String" DbType="NText" />
+    <Parameter Name="Chitiet" Parameter="chitiet" Type="System.String" DbType="NText" />
+    <Parameter Name="GiaNhap" Parameter="giaNhap" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="GiaBan" Parameter="giaBan" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="SoLuong" Parameter="soLuong" Type="System.Int32" DbType="Int" />
+    <Parameter Name="HinhAnh" Parameter="hinhAnh" Type="System.String" DbType="NText" />
+    <Parameter Name="NgayNhap" Parameter="ngayNhap" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CanNang" Parameter="canNang" Type="System.Double" DbType="Float" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ThoiGianBaoHanh" Parameter="thoiGianBaoHanh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_SELECT_ALL" Method="SP_SAN_PHAM_SELECT_ALL">
+    <ElementType Name="SP_SAN_PHAM_SELECT_ALLResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd" Method="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHd">
+    <Parameter Name="MaHd" Parameter="maHd" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SAN_PHAM_SELECT_By_MaHdFromChitietHdResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_SELECT_By_MaNcc" Method="SP_SAN_PHAM_SELECT_By_MaNcc">
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SAN_PHAM_SELECT_By_MaNccResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_SELECT_By_MaNhomSp" Method="SP_SAN_PHAM_SELECT_By_MaNhomSp">
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SAN_PHAM_SELECT_By_MaNhomSpResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_SELECT_By_MaSp" Method="SP_SAN_PHAM_SELECT_By_MaSp">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <ElementType Name="SP_SAN_PHAM_SELECT_By_MaSpResult">
+      <Column Name="MA_SP" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_SP" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="THONG_SO_KY_THUAT" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="CHITIET" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="GIA_NHAP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="GIA_BAN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="SO_LUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINH_ANH" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="NGAY_NHAP" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CAN_NANG" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TRANG_THAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="THOI_GIAN_BAO_HANH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NHOM_SP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_NCC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_SELECT_Paged" Method="SP_SAN_PHAM_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_SAN_PHAM_UPDATE" Method="SP_SAN_PHAM_UPDATE">
+    <Parameter Name="MaSp" Parameter="maSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="TenSp" Parameter="tenSp" Type="System.String" DbType="NVarChar(500)" />
+    <Parameter Name="ThongSoKyThuat" Parameter="thongSoKyThuat" Type="System.String" DbType="NText" />
+    <Parameter Name="Chitiet" Parameter="chitiet" Type="System.String" DbType="NText" />
+    <Parameter Name="GiaNhap" Parameter="giaNhap" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="GiaBan" Parameter="giaBan" Type="System.Decimal" DbType="Money" />
+    <Parameter Name="SoLuong" Parameter="soLuong" Type="System.Int32" DbType="Int" />
+    <Parameter Name="HinhAnh" Parameter="hinhAnh" Type="System.String" DbType="NText" />
+    <Parameter Name="NgayNhap" Parameter="ngayNhap" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="CanNang" Parameter="canNang" Type="System.Double" DbType="Float" />
+    <Parameter Name="TrangThai" Parameter="trangThai" Type="System.Int32" DbType="Int" />
+    <Parameter Name="ThoiGianBaoHanh" Parameter="thoiGianBaoHanh" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNhomSp" Parameter="maNhomSp" Type="System.Int32" DbType="Int" />
+    <Parameter Name="MaNcc" Parameter="maNcc" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_DELETE" Method="SP_THANH_VIEN_DELETE">
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_FIND" Method="SP_THANH_VIEN_FIND">
+    <Parameter Name="SearchUsingOR" Parameter="searchUsingOR" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenTv" Parameter="tenTv" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="GioiTinh" Parameter="gioiTinh" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NgaySinh" Parameter="ngaySinh" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Tinh" Parameter="tinh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <ElementType Name="SP_THANH_VIEN_FINDResult">
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_TV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_INSERT" Method="SP_THANH_VIEN_INSERT">
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="MatKhau" Parameter="matKhau" Type="System.String" DbType="VarChar(50)" />
+    <Parameter Name="TenTv" Parameter="tenTv" Type="System.String" DbType="NVarChar(100)" />
+    <Parameter Name="GioiTinh" Parameter="gioiTinh" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NgaySinh" Parameter="ngaySinh" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="Tinh" Parameter="tinh" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DiaChi" Parameter="diaChi" Type="System.String" DbType="NText" />
+    <Parameter Name="LienHe" Parameter="lienHe" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="Email" Parameter="email" Type="System.String" DbType="VarChar(60)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_SELECT_ALL" Method="SP_THANH_VIEN_SELECT_ALL">
+    <ElementType Name="SP_THANH_VIEN_SELECT_ALLResult">
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_TV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_SELECT_By_MaTv" Method="SP_THANH_VIEN_SELECT_By_MaTv">
+    <Parameter Name="MaTv" Parameter="maTv" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="SP_THANH_VIEN_SELECT_By_MaTvResult">
+      <Column Name="MA_TV" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="MAT_KHAU" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TEN_TV" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="GIOI_TINH" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="NGAY_SINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TINH" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="DIA_CHI" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="LIEN_HE" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(60)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SP_THANH_VIEN_SELECT_Paged" Method="SP_THANH_VIEN_SELECT_Paged">
+    <Parameter Name="WhereClause" Parameter="whereClause" Type="System.String" DbType="VarChar(8000)" />
+    <Parameter Name="OrderBy" Parameter="orderBy" Type="System.String" DbType="VarChar(2000)" />
+    <Parameter Name="PageIndex" Parameter="pageIndex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="PageSize" Parameter="pageSize" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
