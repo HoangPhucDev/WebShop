@@ -71,73 +71,41 @@
     </div>
 
 
-    <div class="box" id="details">
-        <p>
-        </p><h4>Thông Tin Sản Phẩm</h4>
-        <p>@foreach (var item in Model)
-        {
-            @Html.Raw(item.CHITIET)
-        }</p>
-        
+    <div @*class="box"*@ id="details">
+        <div class="tabs">
+            <ul class="nav nav-pills nav-justified">
+                <li class="active">
+                    <a href="#tab2-1" data-toggle="tab">Thông Tin Sản Phẩm</a>
+                </li>
+                <li class="">
+                    <a href="#tab2-2" data-toggle="tab">Thông Số Kỹ Thuật</a>
+                </li>
+            </ul>
+            <div class="tab-content tab-content-inverse">
+                <div class="tab-pane active" id="tab2-1">
+                    <p>
+                        @foreach (var item in Model)
+                        {
+                            @Html.Raw(item.CHITIET)
+                        }
+                    </p>
+                </div>
+                <!-- /.tab -->
+                <div class="tab-pane" id="tab2-2">
+                    <p>
+                        @foreach (var item in Model)
+                        {
+                            @Html.Raw(item.THONG_SO_KY_THUAT)
+                        }
+                    </p>
+                </div>
+                <!-- /.tab -->
+            </div>
+        </div>
     </div>
-
     
 
-    <div class="row">
-        <div class="col-md-3 col-sm-6">
-            <div class="box text-uppercase">
-                <h3>You may also like these products</h3>
-            </div>
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="product">
-                <div class="image" style="height: 189px;">
-                    <a href="#">
-                        <img src="~/Content/img/h2.jpg" alt="" class="img-responsive image1">
-                    </a>
-                </div>
-                <div class="text">
-                    <h3>Fur coat</h3>
-                    <p class="price">$143</p>
-
-                </div>
-            </div>
-            <!-- /.product -->
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="product">
-                <div class="image" style="height: 189px;">
-                    <a href="#">
-                        <img src="~/Content/img/h3.jpg" alt="" class="img-responsive image1">
-                    </a>
-                </div>
-                <div class="text">
-                    <h3>Fur coat</h3>
-                    <p class="price">$143</p>
-                </div>
-            </div>
-            <!-- /.product -->
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="product">
-                <div class="image" style="height: 189px;">
-                    <a href="#">
-                        <img src="~/Content/img/h1.jpg" alt="" class="img-responsive image1">
-                    </a>
-                </div>
-                <div class="text">
-                    <h3>Fur coat</h3>
-                    <p class="price">$143</p>
-                </div>
-            </div>
-            <!-- /.product -->
-        </div>
-
-    </div>
-
+    <br />
     <div class="row">
         <div class="col-md-3 col-sm-6">
             <div class="box text-uppercase">
@@ -145,36 +113,6 @@
             </div>
         </div>
 
-
-        <div class="col-md-3 col-sm-6">
-            <div class="product">
-                <div class="image" style="height: 189px;">
-                    <a href="#">
-                        <img src="~/Content/img/h3.jpg" alt="" class="img-responsive image1">
-                    </a>
-                </div>
-                <div class="text">
-                    <h3>Fur coat</h3>
-                    <p class="price">$143</p>
-                </div>
-            </div>
-            <!-- /.product -->
-        </div>
-
-        <div class="col-md-3 col-sm-6">
-            <div class="product">
-                <div class="image" style="height: 189px;">
-                    <a href="#">
-                        <img src="~/Content/img/h1.jpg" alt="" class="img-responsive image1">
-                    </a>
-                </div>
-                <div class="text">
-                    <h3>Fur coat</h3>
-                    <p class="price">$143</p>
-                </div>
-            </div>
-            <!-- /.product -->
-        </div>
 
 
         <div class="col-md-3 col-sm-6">
