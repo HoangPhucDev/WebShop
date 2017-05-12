@@ -20,10 +20,10 @@
                 <div class="col-sm-4 col-md-3">
                     <div class="product">
                         <div class="image" >
-                            <a href="/Home/Detail/@item.MA_SP"><img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive image1"></a>
+                            <a href="@Url.Action("Index", "Detail", new { id = item.MA_SP })"><img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive image1"></a>
                         </div>
                         <div class="text">
-                            <h3 style="border-bottom: none">@Html.ActionLink(item.TEN_SP, "Detail/" + item.MA_SP, "Home")</h3>
+                            <h3 style="border-bottom: none">@Html.ActionLink(item.TEN_SP, "Index", "Detail", new { id = item.MA_SP }, new { })</h3>
                             <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
                         </div>
                     </div>

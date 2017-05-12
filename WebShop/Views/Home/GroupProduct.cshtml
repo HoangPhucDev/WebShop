@@ -5,30 +5,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@section breadcrumbs{
-                @foreach (var item in Model.Take(1))
-                {
-                    <li>@Html.Label(item.NHOM_SAN_PHAM.TEN_NHOM_SP)</li>
-                }
-            }
+@section breadcrumbs{<li>@ViewBag.NameGroup</li>}
 
 <div class="col-sm-9">
-    <div class="row products">
-        
-            @foreach (var item in Model)
-            {
-                <div class="col-sm-6 col-md-3">
-                    <div class="product">
-                        <div class="image" style="height: 251px;">
-                            <a href="/Home/Detail/@item.MA_SP"><img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive image1"></a>
-                        </div>
-                        <div class="text">
-                            <h3 style="border-bottom: none">@Html.ActionLink(item.TEN_SP, "Detail/" + item.MA_SP, "Home")</h3>
-                            <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
-                        </div>
+
+    @foreach (var item in Model)
+        {
+            <div class="col-sm-6 col-md-3">
+                <div class="product">
+                    <div class="image" style="height: 251px;">
+                        <a href="@Url.Action("Index", "Detail", new { id = item.MA_SP })"><img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive image1"></a>
+                    </div>
+                    <div class="text">
+                        <h3 style="border-bottom: none">@Html.ActionLink(item.TEN_SP, "Index", "Detail",new {id=item.MA_SP},new { })</h3>
+                        <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
                     </div>
                 </div>
-                }
-        
-    </div>
+            </div>
+            }
+
+            @*@Html.Action("ProductPartial", "Home", new { IdGroup = ViewBag.IdGroup })*@
+     
+
 </div>

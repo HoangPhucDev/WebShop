@@ -3,6 +3,6 @@
 @foreach (var item in Model)
 {
     <li>
-        @Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP })
+        @Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP })
     </li>
 }

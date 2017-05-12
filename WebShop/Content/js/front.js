@@ -346,7 +346,38 @@ function productDetailGallery(confDetailSwitch) {
 	$('#mainImage img').attr('src', bigUrl);
     }
 }
+function carousels() {
 
+    $("#get-inspired").owlCarousel({
+        navigation: true, // Show next and prev buttons
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        autoPlay: true,
+        stopOnHover: true,
+        singleItem: true,
+        afterInit: ''
+    });
+
+    $('.product-slider').owlCarousel({
+        navigation: true, // Show next and prev buttons
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        afterInit: function () {
+            $('.product-slider .item').css('visibility', 'visible');
+        }
+    });
+
+    $('#main-slider').owlCarousel({
+        navigation: true, // Show next and prev buttons
+        slideSpeed: 300,
+        paginationSpeed: 400,
+        autoPlay: true,
+        stopOnHover: true,
+        singleItem: true,
+        afterInit: ''
+    });
+
+}
 /* product detail sizes */
 
 function productDetailSizes() {

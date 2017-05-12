@@ -47,7 +47,7 @@
 
     <link href="~/Content/css/owl.carousel.css" rel="stylesheet">
     <link href="~/Content/css/owl.theme.css" rel="stylesheet">
-
+    <script src="~/Content/js/respond.min.js"></script>
 </head>
 
 <body>
@@ -73,15 +73,15 @@
                                 @if (Html.Action("TaiKhoang", "Home").ToString() != "Khách")
 
                                 {
-                                   
-                                            <b class="hidden-xs text-capitalize">Xin Chào</b>
+
+                                    <b class="hidden-xs text-capitalize">Xin Chào</b>
                                             <a href="@Url.Action("Index","Account")" style="color:#38a7bb">@Html.Action("TaiKhoang", "Home")</a>
 
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-xs btn-info" data-toggle="dropdown">Chức Năng</button>
                                                 <button type="button" class="btn btn-xs btn-info dropdown-toggle" data-toggle="dropdown">
                                                     <span class="caret"></span>
-                                                    
+
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
                                                     <li>
@@ -98,15 +98,15 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                              
 
-                                                }
-                                                else
-                                                {
-                                                <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
+
+                                }
+                                else
+                                {
+                                    <a href="#" data-toggle="modal" data-target="#login-modal"><i class="fa fa-sign-in"></i> <span class="hidden-xs text-uppercase">Sign in</span></a>
                                                 <a href="#"><i class="fa fa-user"></i> <span class="hidden-xs text-uppercase">Sign up</span></a>
-                                                }
-                                            </div>
+                                }
+                            </div>
 
                         </div>
                     </div>
@@ -122,3 +122,7 @@
             <!-- *** NAVBAR END *** -->
 
         </header>
+
+</body>
+
+</html>

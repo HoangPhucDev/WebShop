@@ -20,7 +20,8 @@ namespace WebShop
             );
             routes.MapRoute(
                 name: "Detail",
-                url: "{controller}/{action}/{Id}"
+                url: "{controller}/{action}/{Id}",
+                defaults: new { controller = "Detail", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

@@ -3567,3 +3567,36 @@ a.list-group-item.active > .badge,
 #main-slider {
   margin-top: 30px;
 }
+
+#hot .product-slider {
+    margin-bottom: 20px;
+}
+
+    #hot .product-slider:before,
+    #hot .product-slider:after {
+        content: " ";
+        display: table;
+    }
+
+    #hot .product-slider:after {
+        clear: both;
+    }
+
+    #hot .product-slider .item {
+        margin: 0 25px;
+        visibility: hidden;
+    }
+
+    #hot .product-slider .owl-controls {
+        position: relative;
+        top: -30px;
+    }
+
+        #hot .product-slider .owl-controls .owl-buttons {
+            display: none;
+        }
+
+        #hot .product-slider .owl-controls .owl-page.active span,
+        #hot .product-slider .owl-controls.clickable .owl-page:hover span {
+            background: #38a7bb;
+        }

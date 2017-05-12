@@ -23,16 +23,7 @@ namespace WebShop.Controllers
             var Menu = NhomSanPhamDAO.Instance.GetCatalogue();
             return View(Menu);
         }
-        public ActionResult Detail(string id)
-        {
-            SanPhamDAO sanphamdao = new SanPhamDAO();
-            var ListProduct = sanphamdao.GetListProductById(Convert.ToInt32(id));
-            if (id == null)
-            {
-                return HttpNotFound(); //dùng hàm sao để trả về trang bad new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            return View(ListProduct.Take(1));
-        }
+        
 
      
         public ActionResult About()
@@ -82,6 +73,8 @@ namespace WebShop.Controllers
         {
 
             var ListProduct = SanPhamDAO.Instance.GetListProductByGroupAndSpecies(IdGroup);
+            ViewBag.NameGroup = NameGroup;
+            ViewBag.IdGroup = IdGroup;
             return View(ListProduct);
         }
 
@@ -111,8 +104,24 @@ namespace WebShop.Controllers
             var ListProduct = db.SAN_PHAM.ToList().Where(p => p.TEN_SP.ConvertToUnSign().ToLower().Contains(Name.ConvertToUnSign().ToLower())).Select(p => p);
             return View(ListProduct);
         }
-  
+        [HttpPost]
+        public ActionResult SetBasket(int Id)
+        {
+            foreach (var item in SanPhamDAO.Instance.GetListProductById(Id))
+            {
+                BasketSession.SetSession(new BasketSession() { MaSP = item.MA_SP, TenSP = item.TEN_SP, Gia = item.GIA_BAN, SoLuong=1 });
+            }
+            return RedirectToAction("Index", "Home");
+        }
 
+        public int GetBasket()
+        {
+           
+            if (BasketSession.GetSession() != null)
+                return BasketSession.GetTotal();
+            else
+                return 0;
+        }
 
 
     }
