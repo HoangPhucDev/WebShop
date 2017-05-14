@@ -39,11 +39,11 @@ namespace ModelWebBanHang.DAO
                 return list;
         }
 
-        public List<SAN_PHAM> GetListProductById(int id)
+        public SAN_PHAM GetListProductById(int id)
         {
-                List<SAN_PHAM> list = db.SP_SAN_PHAM_SELECT_By_MaSp(id).ToList();
+                SAN_PHAM Product = db.SP_SAN_PHAM_SELECT_By_MaSp(id).SingleOrDefault();
 
-                return list;
+                return Product;
         }
 
         public List<SAN_PHAM> GetListProductByGroup(int idGroup)

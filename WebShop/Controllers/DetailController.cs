@@ -17,12 +17,16 @@ namespace WebShop.Controllers
         public ActionResult Index(string id)
         {
             SanPhamDAO sanphamdao = new SanPhamDAO();
-            var ListProduct = sanphamdao.GetListProductById(Convert.ToInt32(id));
+            var Product = sanphamdao.GetListProductById(Convert.ToInt32(id));
             if (id == null)
             {
                 return HttpNotFound(); //dùng hàm sao để trả về trang bad new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            return View(ListProduct.Take(1));
+            else
+            {
+                return View(Product);
+            }
+            
         }
     }
 }

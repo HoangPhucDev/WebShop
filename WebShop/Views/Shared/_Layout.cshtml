@@ -1,40 +1,28 @@
 ﻿@RenderPage("_Header.cshtml")
 
-        <!-- *** LOGIN MODAL ***
-        _________________________________________________________ -->
-        
-        @RenderPage("_LoginPartial.cshtml")
+<!-- *** LOGIN MODAL ***
+_________________________________________________________ -->
 
-        <!-- *** LOGIN MODAL END *** -->
-        <div id="heading-breadcrumbs">
-            <div class="container">
-                <ul class="breadcrumb">
-                    <li>@Html.ActionLink("Trang Chủ", "Index", "Home")</li>
-                    @RenderSection("breadcrumbs")
-                </ul>
-            </div>
+@RenderPage("_LoginPartial.cshtml")
+
+<!-- *** LOGIN MODAL END *** -->
+<div id="heading-breadcrumbs">
+    <div class="container">
+        <ul class="breadcrumb">
+            <li>@Html.ActionLink("Trang Chủ", "Index", "Home")</li>
+            @RenderSection("breadcrumbs")
+        </ul>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            @RenderBody()
         </div>
+    </div>
+    <!-- /.container -->
 
-        <section>
-            <div class="container">
+</section>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <!-- *** MENUS AND WIDGETS ***
-                        _________________________________________________________ -->
-                        @Html.Action("MenuPartial", "Home")
-
-
-
-                        <!-- *** MENUS AND FILTERS END *** -->
-                    </div>
-
-                    @RenderBody()
-                </div>
-
-            </div>
-            <!-- /.container -->
-
-        </section>
-
- @RenderPage("_Footer.cshtml")       
+@RenderPage("_Footer.cshtml")       

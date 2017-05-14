@@ -93,7 +93,7 @@ namespace WebShop.Areas.Admin.Controllers
             var nhacungcapDAO = new NhaCungCapDAO();
             var sanphamdao = new SanPhamDAO();
 
-            SAN_PHAM sanpham = sanphamdao.GetListProductById(id).SingleOrDefault();
+            SAN_PHAM sanpham = sanphamdao.GetListProductById(id);
 
             //load ds sản phẩm và nhà cung ứng vào drodowbox
             List<SelectListItem> dsnhomsanpham = new List<SelectListItem>();
@@ -147,7 +147,7 @@ namespace WebShop.Areas.Admin.Controllers
             ViewBag.MA_NCC = new SelectList(nhacungcapDAO.GetListSupplier(), "MA_NCC", "TEN_NCC");
 
             //xử lý file hình
-            string AnhGoc = SanPhamDAO.GetListProductById(id).Select(p => p.HINH_ANH).SingleOrDefault();
+            string AnhGoc = SanPhamDAO.GetListProductById(id).HINH_ANH;
             var imageupload = new ImageUpload(Server.MapPath("~/Content/img"));
             if (imageupload.KiemTraSuaAnh(fileHinhAnh, AnhGoc))
             {

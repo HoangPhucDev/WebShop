@@ -18,11 +18,27 @@ namespace WebShop
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
             routes.MapRoute(
                 name: "Detail",
-                url: "{controller}/{action}/{Id}",
+                url: "Chi-Tiet/{Id}",
                 defaults: new { controller = "Detail", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Group Product",
+                url: "Nhom/{IdGroup}-{NameGroup}",
+                defaults: new { controller = "Home", action = "GroupProduct", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
+                name: "Bakset",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Index", action = "Basket", id = UrlParameter.Optional }
+            );
+
+
+
         }
     }
 }

@@ -32,7 +32,7 @@
                     }
 
                     <div class="navbar-collapse collapse navbar-right" id="basket-overview">
-                        <a href="basket.html" class="btn btn-template-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@Html.Action("GetBasket","Home")</span></a>
+                        <a href="@Url.Action("Index","Basket")" class="btn btn-template-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@Html.Action("HeaderBasket", "Home")</span></a>
                     </div>
                 </div>
 
@@ -56,7 +56,7 @@
                                                 @foreach (var item in Model)
                                                 {
                                                     <div class="col-sm-3">
-                                                        <h5>@Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP })</h5>
+                                                        <h5>@Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
                                                         <ul>
                                                             @Html.Action("SubMenuPartial", "Home", new { ParentId = item.MA_NHOM_SP })
                                                         </ul>
@@ -78,7 +78,7 @@
                                                         <ul>
                                                             @Html.Action("SubMenuPartial", "Home", new { ParentId = item.MA_NHOM_SP })
                                                         </ul>
-                                                        <h5>@Html.ActionLink("Xem Tất Cả", "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP })</h5>
+                                                        <h5>@Html.ActionLink("Xem Tất Cả", "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
                                         </div>
                                     </li>
                                 </ul>

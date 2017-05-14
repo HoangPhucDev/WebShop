@@ -10,6 +10,7 @@
                 <div class="text">
                     <h3>@Html.ActionLink(item.TEN_SP, "Index", "Detail", new { id = item.MA_SP }, new { })</h3>
                     <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
+                    <a class="btn btn-template-main" href="@Url.Action("AddBasket","Basket",new {id = item.MA_SP })"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</a>
                 </div>
             </div>
         </div>

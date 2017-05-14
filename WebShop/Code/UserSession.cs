@@ -8,11 +8,7 @@ namespace WebShop.Code
     [Serializable]
     public class UserSession
     {
-        public string UserName { set; get; }
-        
+        public string UserName { set; get; }     
         public bool RememberMe { set; get; }
-
-
-
         }
     }

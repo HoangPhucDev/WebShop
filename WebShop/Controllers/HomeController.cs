@@ -11,6 +11,7 @@ using WebShop.Code;
 using System.Drawing;
 using System.IO;
 using System.Collections;
+using WebShop.Models;
 
 namespace WebShop.Controllers
 {
@@ -96,6 +97,8 @@ namespace WebShop.Controllers
             
         }
 
+
+
         [HttpGet]
         public ActionResult Search(string @Name)
         {
@@ -104,25 +107,20 @@ namespace WebShop.Controllers
             var ListProduct = db.SAN_PHAM.ToList().Where(p => p.TEN_SP.ConvertToUnSign().ToLower().Contains(Name.ConvertToUnSign().ToLower())).Select(p => p);
             return View(ListProduct);
         }
-        [HttpPost]
-        public ActionResult SetBasket(int Id)
+
+        public int HeaderBasket()
         {
-            foreach (var item in SanPhamDAO.Instance.GetListProductById(Id))
+            var Basket = Session["BasketSession"];
+            var list = new List<BasketModel>();
+            if (Basket != null)
             {
-                BasketSession.SetSession(new BasketSession() { MaSP = item.MA_SP, TenSP = item.TEN_SP, Gia = item.GIA_BAN, SoLuong=1 });
+                list = BasketSession.GetSession();
+                return list.Count;
             }
-            return RedirectToAction("Index", "Home");
-        }
-
-        public int GetBasket()
-        {
-           
-            if (BasketSession.GetSession() != null)
-                return BasketSession.GetTotal();
             else
+            {
                 return 0;
+            }
         }
-
-
     }
 }

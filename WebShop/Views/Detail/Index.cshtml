@@ -1,15 +1,14 @@
-﻿@model IEnumerable<ModelWebBanHang.SAN_PHAM>
+﻿@model ModelWebBanHang.SAN_PHAM
 @{
     ViewBag.Title = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @section breadcrumbs{
-    @foreach (var item in Model)
-    {
-        <li>@Html.ActionLink(item.NHOM_SAN_PHAM.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.NHOM_SAN_PHAM.TEN_NHOM_SP })</li>
-            <li>@Html.Label(item.TEN_SP)</li>
-    }}
+        <li>@Html.ActionLink(Model.NHOM_SAN_PHAM.TEN_NHOM_SP, "GroupProduct","Home",new { IdGroup = Model.MA_NHOM_SP, NameGroup = Model.NHOM_SAN_PHAM.TEN_NHOM_SP },new { })</li>
+            <li>@Model.TEN_SP</li>
+    }
 
+@Html.Action("MenuPartial", "Home")
 
 <div class="col-md-9">
 
@@ -17,10 +16,9 @@
     <div class="row" id="productMain">
         <div class="col-sm-6">
             <div id="mainImage">
-                @foreach (var item in Model)
-                {
-                    <img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive">
-                }
+                
+                    <img src="~/Content/img/@Model.HINH_ANH" alt="" class="img-responsive">
+                
             </div>
 
             <div class="ribbon sale">
@@ -39,34 +37,37 @@
         <div class="col-sm-6">
             <div class="box">
 
-                @using (Html.BeginForm("SetBasket","Home",FormMethod.Post))
-                { 
-                    foreach(var item in Model)
-                    {
+                @using (Html.BeginForm("AddBasket", "Basket", FormMethod.Post))
+                {
+                    
                         <div class="sizes">
-                            <h3>@item.TEN_SP</h3><input type="hidden" name="Id" value="@item.MA_SP" />
+                            <h3>@Model.TEN_SP</h3><input type="hidden" value="@Model.MA_SP" name="Id" />
+                           
                         </div>
-                        <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
-                    }
+                        
+                        <p class="price">@String.Format("{0:0,0}", Model.GIA_BAN) VNĐ</p>
+
                     <p class="text-center">
-                        <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
-                        <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist">
-                            <i class="fa fa-heart-o"></i>
-                        </button>
+                        
+                            <input type="number" value="1" name="Quantity" class="form-control" style="width:60px;display:inline" />
+                            <button type="submit" class="btn btn-template-main"><i class="fa fa-shopping-cart"></i> Add to cart</button>
+                            <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add to wishlist">
+                                <i class="fa fa-heart-o"></i>
+                            </button>
+                         
                     </p>
 
                 } 
             </div>
-            @foreach (var item in Model)
-                {
+            
                 <div class="row" id="thumbs">
                     <div class="col-xs-4">
-                        <a href="~/Content/img/@item.HINH_ANH" class="thumb">
-                            <img src="~/Content/img/@item.HINH_ANH" alt="" class="img-responsive">
+                        <a href="~/Content/img/@Model.HINH_ANH" class="thumb">
+                            <img src="~/Content/img/@Model.HINH_ANH" alt="" class="img-responsive">
                         </a>
                     </div>
                 </div>
-            }
+            
         </div>
 
     </div>
@@ -85,19 +86,17 @@
             <div class="tab-content tab-content-inverse">
                 <div class="tab-pane active" id="tab2-1">
                     <p>
-                        @foreach (var item in Model)
-                        {
-                            @Html.Raw(item.CHITIET)
-                        }
+                        
+                            @Html.Raw(Model.CHITIET)
+                        
                     </p>
                 </div>
                 <!-- /.tab -->
                 <div class="tab-pane" id="tab2-2">
                     <p>
-                        @foreach (var item in Model)
-                        {
-                            @Html.Raw(item.THONG_SO_KY_THUAT)
-                        }
+                        
+                            @Html.Raw(Model.THONG_SO_KY_THUAT)
+                        
                     </p>
                 </div>
                 <!-- /.tab -->
