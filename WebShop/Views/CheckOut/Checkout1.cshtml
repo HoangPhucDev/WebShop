@@ -1,0 +1,158 @@
+﻿@model IEnumerable<ModelWebBanHang.SAN_PHAM>
+
+@{
+    ViewBag.Title = "Đặt Hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var Order = (ModelWebBanHang.HOA_DON)ViewBag.Order;
+}
+@section breadcrumbs{<li>Đặt Hàng</li>}
+
+
+<div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-9 clearfix" id="checkout">
+
+                        <div class="box">
+                            @using (Html.BeginForm("CheckOut", "CheckOut", FormMethod.Post))
+                            {
+                                <ul class="nav nav-pills nav-justified">
+                                    <li class="disabled">
+                                        <a href="#"><i class="fa fa-map-marker"></i><br>Thông Tin</a>
+                                    </li>
+                                    <li class="active">
+                                        <a href="#"><i class="fa fa-eye"></i><br>Xác Nhận Thanh Toán</a>
+                                    </li>
+                                </ul>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th colspan="3">Sản Phẩm</th>
+                                                <th>Số Lượng</th>
+                                                <th>Đơn Giá</th>
+                                                <th>Tổng Tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        <a href="@Url.Action("Index", "Detail", new { id = item.MA_SP })">
+                                                            <img src="~/Content/img/@item.HINH_ANH" alt="@item.TEN_SP">
+                                                        </a>
+                                                    </td>
+                                                    <td colspan="2">
+                                                        <a href="@Url.Action("Index", "Detail", new { id = item.MA_SP })">@item.TEN_SP</a>
+                                                    </td>
+                                                    <td>@item.SO_LUONG</td>
+
+                                                    <td>@String.Format("{0:0,0} VNĐ", item.GIA_BAN)</td>
+
+                                                    <td>@String.Format("{0:0,0} VNĐ", item.GIA_BAN * item.SO_LUONG)</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="5">Tổng Tiền</th>
+                                                <th colspan="2">@String.Format("{0:0,0} VNĐ", ViewBag.TongTien)</th>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <input type="hidden" value="@ViewBag.TongTien" name="TongTien" />
+                                </div>
+                                <!-- /.table-responsive -->
+
+                                <div class="row addresses">
+                                    <div class="col-sm-6">
+                                        <h3 class="text-uppercase">Thông Tin Đặt Hàng</h3>
+                                        <p>
+                                            <h4>
+                                                Tên: @Order.KHACH_HANG.TEN_KH
+                                                <br>Số Điện Thoại: @Order.KHACH_HANG.LIEN_HE
+                                                <br>Email: @Order.KHACH_HANG.Email
+                                            </h4>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h3 class="text-uppercase">Địa Chỉ Giao Hàng</h3>
+                                        <p>
+                                            <h4>
+                                                Tỉnh: @Html.DisplayName(Order.TINH_GIAO_HANG != null ? Order.TINH_GIAO_HANG : Order.KHACH_HANG.TINH)
+                                                <br>Địa Chỉ: @Html.DisplayName(Order.DIA_CHI_GIAO_HANG != null ? Order.DIA_CHI_GIAO_HANG : Order.KHACH_HANG.DIA_CHI)
+                                            </h4>
+                                       </p>
+                                    </div>
+                                </div>
+                            <!-- /.addresses -->
+                                <input type="hidden" value="@ViewBag.TongTien" name="THANH_TIEN" />
+                                <input type="hidden" value="@Order.KHACH_HANG.TEN_KH" name="KHACH_HANG.TEN_KH" />
+                                <input type="hidden" value="@Order.KHACH_HANG.LIEN_HE" name="KHACH_HANG.LIEN_HE" />
+                                <input type="hidden" value="@Order.KHACH_HANG.Email" name="KHACH_HANG.Email" />
+                                <input type="hidden" value="@Html.DisplayName(Order.TINH_GIAO_HANG != null ? Order.TINH_GIAO_HANG : Order.KHACH_HANG.TINH)" name="KHACH_HANG.TINH" />
+                                <input type="hidden" value="@Html.DisplayName(Order.DIA_CHI_GIAO_HANG != null ? Order.DIA_CHI_GIAO_HANG : Order.KHACH_HANG.DIA_CHI)" name="KHACH_HANG.DIA_CHI" />
+                                <div class="box-footer">
+                                    <div class="pull-left">
+                                        <a href="@Url.Action("Index", "CheckOut")" class="btn btn-default"><i class="fa fa-chevron-left"></i>Quay lại</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-template-main">
+                                            Đặt Hàng<i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- /.box -->
+                        
+
+                    </div>
+                    <!-- /.col-md-9 -->
+
+                    <div class="col-md-3">
+                        <div class="box" id="order-summary">
+                            <div class="box-header">
+                                <h3>Tổng Hóa Đơn</h3>
+                            </div>
+                            <p class="text-muted">Phí vận chuyển là tạm tính, sau khi đặt hàng nhân viên sẽ liên hệ báo giá chính xác.</p>
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Tổng Tiền Hóa Đơn</td>
+                                            <th>@String.Format("{0:0,0} VNĐ", Order.THANH_TIEN)</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Phí Vận Chuyển</td>
+                                            <th>@String.Format("{0:0,0} VNĐ", 10000)</th>
+                                        </tr>
+                                        <tr class="total">
+                                            <td>Thành Tiền</td>
+                                            <th>@String.Format("{0:0,0} VNĐ", Order.THANH_TIEN)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
+

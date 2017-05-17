@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ModelWebBanHang.SAN_PHAM>
+@{var basket = (List<WebShop.Models.BasketModel>)ViewBag.basket;}
 
     @foreach (var item in Model)
             {
@@ -10,7 +11,21 @@
                 <div class="text">
                     <h3>@Html.ActionLink(item.TEN_SP, "Index", "Detail", new { id = item.MA_SP }, new { })</h3>
                     <p class="price">@String.Format("{0:0,0}", item.GIA_BAN) VNĐ</p>
-                    <a class="btn btn-template-main" href="@Url.Action("AddBasket","Basket",new {id = item.MA_SP })"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                    @if(basket!=null)
+                    {
+                        if(basket.Exists(p=>p.MaSP==item.MA_SP))
+                        {
+                         <a class="btn btn-template-primary" href="@Url.Action("Index", "Basket")"><i class="fa fa-shopping-cart"></i>Đã Thêm Vào Giỏ</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-template-main" href="@Url.Action("AddBasket","Basket",new {id = item.MA_SP })"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                        }
+                    }
+                    else
+                    {
+                        <a class="btn btn-template-main" href="@Url.Action("AddBasket","Basket",new {id = item.MA_SP })"><i class="fa fa-shopping-cart"></i>Thêm Vào Giỏ</a>
+                    }
                 </div>
             </div>
         </div>

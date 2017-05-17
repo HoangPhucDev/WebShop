@@ -18,8 +18,8 @@
 
                         <div class="box">
 
-                            <form method="post" action="shop-checkout1.html">
-
+                           @using (Html.BeginForm("Index", "CheckOut", FormMethod.Post))
+                           { 
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
@@ -27,8 +27,7 @@
                                                 <th colspan="3">Sản Phẩm</th>
                                                 <th>Số Lượng</th>
                                                 <th>Đơn Giá</th>
-
-                                                <th >Tổng Tiền</th>
+                                                <th>Tổng Tiền</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -47,36 +46,36 @@
                                                 </td>
                                                 <td >@String.Format("{0:0,0} VNĐ", item.GIA_BAN)</td>
 
-                                                <td>@String.Format("{0:0,0} VNĐ",item.GIA_BAN * item.SO_LUONG)</td>
+                                                <td>@String.Format("{0:0,0} VNĐ", item.GIA_BAN * item.SO_LUONG)</td>
                                                 <td><a href="#"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
-                                            }
+                                                }
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <th colspan="5">Tổng Tiền</th>
-
                                                 <th colspan="2">@String.Format("{0:0,0} VNĐ", ViewBag.TongTien)</th>
+                                                
                                             </tr>
                                         </tfoot>
                                     </table>
-
+                                    <input type="hidden" value="@ViewBag.TongTien" name="TongTien"/>
                                 </div>
                                 <!-- /.table-responsive -->
 
                                 <div class="box-footer">
                                     <div class="pull-left">
-                                        <a href="shop-category.html" class="btn btn-default"><i class="fa fa-chevron-left"></i> Continue shopping</a>
+                                        <a href="@Url.Action("Index","Home")" class="btn btn-default"><i class="fa fa-chevron-left"></i> Tiếp Tục Mua</a>
                                     </div>
                                     <div class="pull-right">
-                                        <button class="btn btn-default"><i class="fa fa-refresh"></i> Update cart</button>
-                                        <button type="submit" class="btn btn-template-main">Proceed to checkout <i class="fa fa-chevron-right"></i>
+                                        <button class="btn btn-default"><i class="fa fa-refresh"></i> Cập Nhật</button>
+                                        <button type="submit" class="btn btn-template-main">Thanh Toán <i class="fa fa-chevron-right"></i>
                                         </button>
                                     </div>
                                 </div>
 
-                            </form>
+                           }
 
                         </div>
                         <!-- /.box -->
@@ -144,7 +143,7 @@
                             <div class="box-header">
                                 <h3>Tổng Hóa Đơn</h3>
                             </div>
-                            <p class="text-muted">Shipping and additional costs are calculated based on the values you have entered.</p>
+                            <p class="text-muted">Phí vận chuyển là tạm tính, sau khi đặt hàng nhân viên sẽ liên hệ báo giá chính xác.</p>
 
                             <div class="table-responsive">
                                 <table class="table">
@@ -155,7 +154,7 @@
                                         </tr>
                                         <tr>
                                             <td>Phí Vận Chuyển</td>
-                                            <th>@String.Format("{0:0,0} VNĐ",10000)</th>
+                                            <th>@String.Format("{0:0} VNĐ",0)</th>
                                         </tr>
                                         <tr class="total">
                                             <td>Thành Tiền</td>

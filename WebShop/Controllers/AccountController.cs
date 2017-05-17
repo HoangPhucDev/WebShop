@@ -1,9 +1,10 @@
 ﻿using ModelWebBanHang;
 using ModelWebBanHang.DAO;
 using System;
-
+using System.Collections.Generic;
 using System.Web.Mvc;
 using WebShop.Code;
+using System.Linq;
 
 namespace WebShop.Controllers
 {
@@ -42,8 +43,23 @@ namespace WebShop.Controllers
                 ModelState.AddModelError("", "Sai tài khoảng Hoặc mật khẩu");
             }
             return RedirectToAction("Index", "Home");
+
+
         }
 
+        public ActionResult Order()
+        {
+            var session = SessionHelper.GetSession();
+            List<HOA_DON> hd = db.HOA_DON.Where(p => p.KHACH_HANG.THANH_VIEN.MA_TV == session.UserName).ToList();
+            return View(hd);
+        }
+
+        public ActionResult DetailOrder(int IDOrder)
+        {
+            ViewBag.Order = db.HOA_DON.Where(p => p.MA_HD == IDOrder).Single();
+            List<CHITIET_HD> hd = db.CHITIET_HD.Where(p => p.MA_HD== IDOrder).ToList();
+            return View(hd);
+        }
         public ActionResult Logout()
         {
             SessionHelper.RemoveSession();

@@ -38,7 +38,7 @@ namespace WebShop.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Error", "Basket");
             }
 
         }
@@ -60,6 +60,10 @@ namespace WebShop.Controllers
 
             BasketSession.AddSession(new BasketModel() { MaSP = Product.MA_SP, TenSP = Product.TEN_SP, Gia = Product.GIA_BAN, SoLuong = 1 });
             return RedirectToAction("Index", "Home");
+        }
+        public ActionResult Error()
+        {
+            return View();
         }
 
     }

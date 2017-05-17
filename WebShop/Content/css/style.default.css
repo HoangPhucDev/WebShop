@@ -288,6 +288,10 @@ ul.list-style-none {
   font-weight: 700;
   letter-spacing: 0.10em;
 }
+#top .login li a{
+        color: #555555;
+}
+
 @media (max-width: 767px) {
   #top .login {
     float: left;

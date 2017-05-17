@@ -31,8 +31,10 @@
                         </div>
                     }
 
-                    <div class="navbar-collapse collapse navbar-right" id="basket-overview">
-                        <a href="@Url.Action("Index","Basket")" class="btn btn-template-primary navbar-btn"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@Html.Action("HeaderBasket", "Home")</span></a>
+                    <div class="input-group input-group-lg navbar-brand navbar-right" id="basket-overview">
+                        
+                            <a href="@Url.Action("Index","Basket")" class="btn btn-template-primary"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@Html.Action("HeaderBasket", "Home")</span></a>
+                        
                     </div>
                 </div>
 
@@ -53,12 +55,18 @@
                                                 <div class="col-sm-6">
                                                     <img src="~/Content/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
                                                 </div>
-                                                @foreach (var item in Model)
+                                                @foreach (var item in Model.Where(p => p.MA_NHOM_CHA == 0).ToList())
                                                 {
                                                     <div class="col-sm-3">
                                                         <h5>@Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
                                                         <ul>
-                                                            @Html.Action("SubMenuPartial", "Home", new { ParentId = item.MA_NHOM_SP })
+                                                            @foreach (var subitem in Model.Where(p => p.MA_NHOM_CHA != 0).ToList())
+                                                            {
+                                                                if (item.MA_NHOM_SP == subitem.MA_NHOM_CHA)
+                                                                {
+                                                                    <li> @Html.ActionLink(subitem.TEN_NHOM_SP, "GroupProduct", new { IdGroup = subitem.MA_NHOM_SP, NameGroup = subitem.TEN_NHOM_SP })</li>
+                                                                }
+                                                            }
                                                         </ul>
                                                     </div>
                                                 }
@@ -67,7 +75,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Where(p => p.MA_NHOM_CHA == 0).ToList())
                             {
                             <li class="dropdown use-yamm yamm-fw">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">@item.TEN_NHOM_SP<b class="caret"></b></a>
@@ -76,7 +84,13 @@
                                         <div class="yamm-content">
                                                     
                                                         <ul>
-                                                            @Html.Action("SubMenuPartial", "Home", new { ParentId = item.MA_NHOM_SP })
+                                                            @foreach (var subitem in Model.Where(p => p.MA_NHOM_CHA != 0).ToList())
+                                                            {
+                                                                if (item.MA_NHOM_SP == subitem.MA_NHOM_CHA)
+                                                                {
+                                                                    <li> @Html.ActionLink(subitem.TEN_NHOM_SP, "GroupProduct", new { IdGroup = subitem.MA_NHOM_SP, NameGroup = subitem.TEN_NHOM_SP })</li>
+                                                                }
+                                                            }
                                                         </ul>
                                                         <h5>@Html.ActionLink("Xem Tất Cả", "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
                                         </div>

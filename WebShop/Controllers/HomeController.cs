@@ -43,6 +43,7 @@ namespace WebShop.Controllers
 
         public PartialViewResult ProductPartial(int IdGroup)
         {
+            ViewBag.basket = BasketSession.GetSession();
            
             var ListProduct = SanPhamDAO.Instance.GetListProductByGroupAndSpecies(IdGroup);
             return PartialView(ListProduct);
@@ -53,27 +54,21 @@ namespace WebShop.Controllers
         public PartialViewResult MenuPartial()
         {
 
-            var Menu = NhomSanPhamDAO.Instance.GetCatalogue();
+            var Menu = NhomSanPhamDAO.Instance.GetCatalogueAll();
 
-            return PartialView(Menu);
-        }
-        public PartialViewResult SubMenuPartial(int ParentId)
-        {
-
-            var Menu = NhomSanPhamDAO.Instance.GetSubCatalogue(ParentId);
             return PartialView(Menu);
         }
 
         public PartialViewResult NavBarPartial()
         {
-            var Menu = NhomSanPhamDAO.Instance.GetCatalogue();
+            var Menu = NhomSanPhamDAO.Instance.GetCatalogueAll();
             return PartialView(Menu);
         }
         [HttpGet]
         public ActionResult GroupProduct(int IdGroup,string NameGroup)
         {
-
             var ListProduct = SanPhamDAO.Instance.GetListProductByGroupAndSpecies(IdGroup);
+            ViewBag.Basket = BasketSession.GetSession();
             ViewBag.NameGroup = NameGroup;
             ViewBag.IdGroup = IdGroup;
             return View(ListProduct);
@@ -102,7 +97,7 @@ namespace WebShop.Controllers
         [HttpGet]
         public ActionResult Search(string @Name)
         {
-
+            ViewBag.Basket = BasketSession.GetSession();
             ViewBag.KeyWord = Name;
             var ListProduct = db.SAN_PHAM.ToList().Where(p => p.TEN_SP.ConvertToUnSign().ToLower().Contains(Name.ConvertToUnSign().ToLower())).Select(p => p);
             return View(ListProduct);

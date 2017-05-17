@@ -1,0 +1,174 @@
+﻿@model ModelWebBanHang.HOA_DON
+
+@{
+    ViewBag.Title = "Đặt Hàng";
+}
+@section breadcrumbs{<li>Đặt Hàng</li>}
+@section scrip{
+    <script type="text/javascript">
+$(document).ready(function(){
+
+        $("#anhien").hide();
+        $('#CheckBoxShipping').click(function(){
+ $("#anhien").slideToggle();
+});
+
+});
+
+    </script>}
+
+<div id="content">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-9 clearfix" id="checkout">
+
+                        <div class="box">
+                            @using (Html.BeginForm("Checkout1","CheckOut"))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <ul class="nav nav-pills nav-justified">
+                                    <li class="active"><a href="#"><i class="fa fa-map-marker"></i><br>Thông Tin</a>
+                                    </li>
+                                    @*<li class="disabled"><a href="#"><i class="fa fa-truck"></i><br>Phương Thức Vận Chuyển</a>
+                                    </li>
+                                    <li class="disabled"><a href="#"><i class="fa fa-money"></i><br>Phương Thức Thanh Toán</a>
+                                    </li>*@
+                                    <li class="disabled"><a href="#"><i class="fa fa-eye"></i><br>Xác Nhận Thanh Toán</a>
+                                    </li>
+                                </ul>
+
+                                <div class="content">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.KHACH_HANG.TEN_KH, "Họ Tên")
+                                                @Html.EditorFor(model => model.KHACH_HANG.TEN_KH, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.KHACH_HANG.TEN_KH, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.KHACH_HANG.LIEN_HE, "Số Điện Thoại")
+                                                @Html.EditorFor(model => model.KHACH_HANG.LIEN_HE, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.KHACH_HANG.LIEN_HE, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.KHACH_HANG.Email)
+                                                @Html.EditorFor(model => model.KHACH_HANG.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.KHACH_HANG.Email, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.KHACH_HANG.TINH, "Tỉnh")
+                                                @Html.DropDownListFor(model => model.KHACH_HANG.TINH, new List<SelectListItem> { new SelectListItem { Text = "Cần Thơ", Value = "Cần Thơ" } }, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(model => model.KHACH_HANG.DIA_CHI, "Địa Chỉ")
+                                                @Html.TextAreaFor(model => model.KHACH_HANG.DIA_CHI, new { @class = "form-control", placeholder = "Địa Chỉ", rows = "5" })
+                                                @Html.ValidationMessageFor(model => model.KHACH_HANG.DIA_CHI, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.row -->
+                                    <div class="panel panel-default">
+                                  <div class="panel-heading"><input type="checkbox" id="CheckBoxShipping">
+                                   Thông tin Giao hàng Khác
+                                   </div>
+                                  <div id="anhien" class="panel-body">
+                                      <div class="row">
+                                          <div class="col-sm-6 col-md-3">
+                                              <div class="form-group">
+                                                  @Html.LabelFor(model => model.TINH_GIAO_HANG, "Tỉnh")
+                                                  @Html.DropDownListFor(model => model.TINH_GIAO_HANG, new List<SelectListItem> { new SelectListItem { Text = "Cần Thơ", Value = "Cần Thơ",Selected=false }}, new { @class = "form-control" })
+                                              </div>
+                                          </div>
+
+                                          <div class="col-sm-6 col-md-9">
+                                              <div class="form-group">
+                                                  @Html.LabelFor(model => model.DIA_CHI_GIAO_HANG, "Địa Chỉ")
+                                                  @Html.TextAreaFor(model => model.DIA_CHI_GIAO_HANG,new { @class = "form-control", placeholder = "Địa Chỉ Giao Hàng Khác", rows = "5" })
+                                                  @Html.ValidationMessageFor(model => model.DIA_CHI_GIAO_HANG, "", new { @class = "text-danger" })
+                                              </div>
+                                          </div>
+                                      </div>
+                                      <!-- /.row -->            
+                                  </div>
+                                </div>
+                                 <!-- /.panel -->
+                                    @*@Html.EditorFor(model=>model.THANH_TIEN,new { value = ViewBag.TongTien })*@
+                                    <input type="hidden" value="@ViewBag.TongTien" name="THANH_TIEN" />
+                                </div>
+
+                                <div class="box-footer">
+                                    <div class="pull-left">
+                                        <a href="@Url.Action("Index", "Basket")" class="btn btn-default"><i class="fa fa-chevron-left"></i>Quay lại giỏ hàng</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <button type="submit" class="btn btn-template-main">Tiếp tục<i class="fa fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <!-- /.box -->
+
+
+                    </div>
+                    <!-- /.col-md-9 -->
+
+                    <div class="col-md-3">
+                        <div class="box" id="order-summary">
+                            <div class="box-header">
+                                <h3>Tổng Hóa Đơn</h3>
+                            </div>
+                            <p class="text-muted">Phí vận chuyển là tạm tính, sau khi đặt hàng nhân viên sẽ liên hệ báo giá chính xác.</p>
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td>Tổng Tiền Hóa Đơn</td>
+                                            <th>@String.Format("{0:0,0} VNĐ", ViewBag.TongTien)</th>
+                                        </tr>
+                                        <tr>
+                                            <td>Phí Vận Chuyển</td>
+                                            <th>@String.Format("{0:0,0} VNĐ", 10000)</th>
+                                        </tr>
+                                        <tr class="total">
+                                            <td>Thành Tiền</td>
+                                            <th>@String.Format("{0:0,0} VNĐ", ViewBag.TongTien)</th>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                    <!-- /.col-md-3 -->
+
+                </div>
+                <!-- /.row -->
+
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- /#content -->
