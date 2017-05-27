@@ -1,0 +1,120 @@
+﻿@model IEnumerable<ModelWebBanHang.CHITIET_HD>
+@{ModelWebBanHang.HOA_DON hd = ViewBag.Order; }
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section tieude{Chi Tiết Đơn Hàng}
+
+<div class="clearfix" id="customer-order">
+
+    <p class="lead">
+        Đơn hàng số # @hd.MA_HD được đặt vào <strong>@hd.NGAY_LAP</strong> và hiện tại <strong>
+            @{
+            switch (hd.TRANG_THAI)
+            {
+                case 0:
+                    <text>Đang Chờ
+                    </text>
+                    break;
+                case 1:
+                    <text>Đã Duyệt
+                    </text>
+                    break;
+                case 2:
+                    <text>
+                        Đã Hoàn Thành
+                    </text>
+                    break;
+                case 3:
+                    <text>
+                        Đã Hủy
+                    </text>
+                    break;
+                default:
+
+                    break;
+            }
+
+        }
+    </strong>.
+</p>
+
+    <div class="box">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th colspan="3">Sản Phẩm</th>
+                        <th>Số Lượng</th>
+                        <th>Đơn Giá</th>
+                        <th>Tổng Tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details", "Product", new { id = item.MA_SP })">
+                                    <img src="~/Content/img/@item.SAN_PHAM.HINH_ANH" alt="White Blouse Armani" height="50px" width="50px">
+                                </a>
+                            </td>
+                            <td colspan="2">
+                                <a href="@Url.Action("Details", "Product", new { id = item.MA_SP })">@Html.DisplayFor(modelItem => item.SAN_PHAM.TEN_SP)</a>
+                            </td>
+                            <td>@item.SO_LUONG_SP</td>
+                            <td>@String.Format("{0:0,0} VNĐ", item.TONG_GIA)</td>
+                            <td>@String.Format("{0:0,0} VNĐ", item.TONG_GIA)</td>
+                        </tr>
+
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="5" class="text-right">Tổng tiền hóa đơn</th>
+                        <th>@String.Format("{0:0,0} VNĐ", hd.THANH_TIEN)</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5" class="text-right">Phí vận chuyển</th>
+                        <th>0</th>
+                    </tr>
+                    <tr>
+                        <th colspan="5" class="text-right">Thành Tiền</th>
+                        <th>@String.Format("{0:0,0} VNĐ", hd.THANH_TIEN)</th>
+                    </tr>
+                </tfoot>
+            </table>
+
+        </div>
+        <!-- /.table-responsive -->
+
+        <div class="row addresses">
+            <div class="col-sm-6">
+                <h3 class="text-uppercase" style="text-align:left">Thông Tin</h3>
+                <p style="text-align:left">
+
+                    Tên: @hd.KHACH_HANG.TEN_KH
+                    <br>Số Điện Thoại: @hd.KHACH_HANG.LIEN_HE
+                    <br>Email: @hd.KHACH_HANG.Email
+
+                </p>
+            </div>
+            <div class="col-sm-6">
+                <h3 class="text-uppercase" style="text-align:left">Địa chỉ giao hàng</h3>
+                <p style="text-align:left">
+
+                    Tỉnh: @Html.DisplayName(hd.TINH_GIAO_HANG != null ? hd.TINH_GIAO_HANG : hd.KHACH_HANG.TINH)
+                    <br>Địa Chỉ: @Html.DisplayName(hd.DIA_CHI_GIAO_HANG != null ? hd.DIA_CHI_GIAO_HANG : hd.KHACH_HANG.DIA_CHI)
+
+                </p>
+            </div>
+        </div>
+        <!-- /.addresses -->
+
+    </div>
+<!-- /.box -->
+</div>
+<p>
+    @Html.ActionLink("Quay Lại", "Index")
+</p>

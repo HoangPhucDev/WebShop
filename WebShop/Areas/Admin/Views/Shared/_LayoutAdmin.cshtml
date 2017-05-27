@@ -95,24 +95,12 @@
         <script src="~/Content/js/bootstrap-datepicker.js"></script>
         <!-- Page-Level Demo Scripts - Tables - Use for reference -->
         <script>
-        $(document).ready(function() {
-            $('#dataTables-example').DataTable({
-                responsive: true
+            $(document).ready(function () {
+                $('#dataTables-example').DataTable({
+                    responsive: true
+                });
             });
-        });
-
-        var mota = CKEDITOR.replace('CHITIET', {
-            customConfig:'~/Content/ckeditor/config.js'
-        })
-        var thongsokythuat = CKEDITOR.replace('THONG_SO_KY_THUAT', {
-            customConfig: '~/Content/ckeditor/config.js'
-        })
-
-        $(function () {
-            $('.datepicker').datepicker({ format: "dd//mm/yyyy" }).on('changeDate', function (ev) {
-                $(this).datepicker('hide');
-            });
-        });
         </script>
+        @RenderSection("script",false)
 </body>
 </html>

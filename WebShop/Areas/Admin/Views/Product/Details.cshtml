@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ModelWebBanHang.SAN_PHAM>
+﻿@model ModelWebBanHang.SAN_PHAM
 
 @{
     ViewBag.Title = "Details";
@@ -6,11 +6,10 @@
 }
 @section tieude{Chi Tiết Sản Phẩm}
 
-@foreach (var item in Model)
-{
+
     <div class="row">
         <div class="col-lg-4">
-            <img src="~/Content/img/@item.HINH_ANH" width="300px" height="300px" />
+            <img src="~/Content/img/@Model.HINH_ANH" width="300px" height="300px" />
         </div>
 
         <div class="col-lg-8">
@@ -19,14 +18,14 @@
                     @Html.DisplayNameFor(model => model.MA_SP)
                 </dt>
                 <dd>
-                    @Html.DisplayFor(modelItem => item.MA_SP)
+                    @Html.DisplayFor(modelModel => Model.MA_SP)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.TEN_SP)
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.TEN_SP)
+                    @Html.DisplayFor(modelModel => Model.TEN_SP)
                 </dd>
 
                 <dt>
@@ -34,7 +33,7 @@
                 </dt>
 
                 <dd>
-                    @String.Format("{0:c0}", item.GIA_NHAP)
+                    @String.Format("{0:c0}", Model.GIA_NHAP)
                 </dd>
 
                 <dt>
@@ -42,7 +41,7 @@
                 </dt>
 
                 <dd>
-                    @String.Format("{0:c0}", item.GIA_BAN)
+                    @String.Format("{0:c0}", Model.GIA_BAN)
                 </dd>
 
                 <dt>
@@ -50,14 +49,14 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.SO_LUONG)
+                    @Html.DisplayFor(modelModel => Model.SO_LUONG)
                 </dd>
                 <dt>
                     @Html.DisplayNameFor(model => model.NGAY_NHAP)
                 </dt>
 
                 <dd>
-                    @String.Format("{0:d} - {0:T}", item.NGAY_NHAP)
+                    @String.Format("{0:d} - {0:T}", Model.NGAY_NHAP)
                 </dd>
 
                 <dt>
@@ -65,7 +64,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.CAN_NANG)
+                    @Html.DisplayFor(modelModel => Model.CAN_NANG)
                 </dd>
 
                 <dt>
@@ -73,7 +72,7 @@
                 </dt>
 
                 <dd>
-                    @(item.TRANG_THAI == 1 ? "Kích Hoạt" : "Khóa")
+                    @(Model.TRANG_THAI == 1 ? "Kích Hoạt" : "Khóa")
                 </dd>
 
                 <dt>
@@ -81,7 +80,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.THOI_GIAN_BAO_HANH)
+                    @Html.DisplayFor(modelModel => Model.THOI_GIAN_BAO_HANH)
                 </dd>
 
                 <dt>
@@ -89,7 +88,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.SO_LAN_TRUY_CAP)
+                    @Html.DisplayFor(modelModel => Model.SO_LAN_TRUY_CAP)
                 </dd>
 
                 <dt>
@@ -97,7 +96,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.NHA_CUNG_CAP.TEN_NCC)
+                    @Html.DisplayFor(modelModel => Model.NHA_CUNG_CAP.TEN_NCC)
                 </dd>
 
                 <dt>
@@ -105,8 +104,8 @@
                 </dt>
 
                 <dd>
-                    @*@Html.DisplayFor(modelItem => item.NGAY_SUA)*@
-                    @(item.NGAY_SUA == null ? "Chưa Sửa" : item.NGAY_SUA.ToString())
+                    @*@Html.DisplayFor(modelModel => Model.NGAY_SUA)*@
+                    @(Model.NGAY_SUA == null ? "Chưa Sửa" : Model.NGAY_SUA.ToString())
                 </dd>
 
                 <dt>
@@ -114,7 +113,7 @@
                 </dt>
 
                 <dd>
-                    @(item.NGUOI_SUA == null ? "Chưa Sửa" : item.NGUOI_SUA)
+                    @(Model.NGUOI_SUA == null ? "Chưa Sửa" : Model.NGUOI_SUA)
                 </dd>
 
                 <dt>
@@ -122,7 +121,7 @@
                 </dt>
 
                 <dd>
-                    @Html.DisplayFor(modelItem => item.NHOM_SAN_PHAM.TEN_NHOM_SP)
+                    @Html.DisplayFor(modelModel => Model.NHOM_SAN_PHAM.TEN_NHOM_SP)
                 </dd>
 
 
@@ -143,11 +142,11 @@
     <div class="tab-content">
         <div class="tab-pane fade in active" id="mota">
 
-            @Html.Raw(item.CHITIET)
+            @Html.Raw(Model.CHITIET)
 
         </div>
         <div class="tab-pane fade" id="thongsokythuat">
-            @Html.Raw(item.THONG_SO_KY_THUAT)
+            @Html.Raw(Model.THONG_SO_KY_THUAT)
 
         </div>
 
@@ -156,8 +155,7 @@
 
 
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = item.MA_SP },new {@class = "btn btn-info" }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MA_SP },new {@class = "btn btn-info" }) |
    
     @Html.ActionLink("Back to List", "Index", new { },new { @class = "btn btn-primary" })
 </p>
-}

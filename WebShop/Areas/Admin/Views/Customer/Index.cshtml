@@ -1,11 +1,11 @@
-﻿@model IEnumerable<ModelWebBanHang.THANH_VIEN>
+﻿@model IEnumerable<ModelWebBanHang.KHACH_HANG>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-@section tieude{Danh Sách Thành Viên}
+@section tieude{Danh Sách Khách Hàng}
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,10 +13,7 @@
 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.MA_TV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TEN_TV)
+            @Html.DisplayNameFor(model => model.TEN_KH)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.GIOI_TINH)
@@ -27,12 +24,17 @@
         <th>
             @Html.DisplayNameFor(model => model.TINH)
         </th>
-
+        <th>
+            @Html.DisplayNameFor(model => model.DIA_CHI)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.LIEN_HE)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.THANH_VIEN.MAT_KHAU)
         </th>
         <th></th>
     </tr>
@@ -40,21 +42,20 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.MA_TV)
+            @Html.DisplayFor(modelItem => item.TEN_KH)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TEN_TV)
+            @Html.DisplayFor(modelItem => item.GIOI_TINH)
         </td>
         <td>
-            @(item.GIOI_TINH==true?"Nam":"Nữ")
-        </td>
-        <td>
-            @String.Format("{0:d}",item.NGAY_SINH)
+            @Html.DisplayFor(modelItem => item.NGAY_SINH)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TINH)
         </td>
-
+        <td>
+            @Html.DisplayFor(modelItem => item.DIA_CHI)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.LIEN_HE)
         </td>
@@ -62,9 +63,12 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MA_TV }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MA_TV }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MA_TV })
+            @Html.DisplayFor(modelItem => item.THANH_VIEN.MAT_KHAU)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MA_KH }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MA_KH }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MA_KH })
         </td>
     </tr>
 }

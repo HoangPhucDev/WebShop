@@ -5,7 +5,27 @@
 }
 
 @section tieude{Quản Lý Sản Phẩm}
-
+@section script{
+<script src="~/Content/js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="~/Content/css/sweetalert.css">
+    <script>
+        
+        jQuery('#btnXoa').click(function () {
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this imaginary file!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function () {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                });
+        });  
+    </script>
+}
 <p>
   @Html.ActionLink("Thêm Mới", "Create",new { },htmlAttributes: new {@class= "btn  btn-success" })
 </p>
@@ -59,7 +79,7 @@
                             
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.TEN_SP)
+                                    @Html.ActionLink(item.TEN_SP, "Details", new { id = item.MA_SP })
                                 </td>
 
                                 <td>
@@ -72,7 +92,7 @@
                                     @Html.DisplayFor(modelItem => item.SO_LUONG)
                                 </td>
                                 <td>
-                                   <div><img src="~/Content/img/@item.HINH_ANH" width="100px" height="100px" /></div> 
+                                   <div><a href="@Url.Action("Details", new { id = item.MA_SP })"><img src="~/Content/img/@item.HINH_ANH" width="100px" height="100px" /></a></div> 
                                 </td>
                                 
                                 <td>
@@ -90,9 +110,11 @@
 
 
                                 <td>
-                                    @Html.ActionLink("Edit", "Edit", new { id = item.MA_SP }) |
-                                    @Html.ActionLink("Details", "Details", new { id = item.MA_SP }) |
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.MA_SP })
+                                    @Html.ActionLink("Sửa", "Edit", new { id = item.MA_SP })
+                                   
+                                    @*@Html.ActionLink("Delete", "Delete", new { id = item.MA_SP },new {id="btnXoa" })*@
+                                    @*<a id="btnXoa">Xóa</a>*@
+                                    @*<a id="btnXoa" value="@item.MA_SP">Xóa</a>*@
                                 </td>
                             </tr>
                         }
