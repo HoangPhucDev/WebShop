@@ -42,12 +42,18 @@
                                                 <td colspan="2"><a href="@Url.Action("Index", "Detail", new { id = item.MA_SP })">@item.TEN_SP</a>
                                                 </td>
                                                 <td>
-                                                    <input type="number" value="@item.SO_LUONG" class="form-control">
+                                                    <div class="input-group">
+                                                        <a href="@Url.Action("GiamBasket","Basket",new { Id=item.MA_SP})"><i class="fa fa-minus-circle"></i></a>
+                                                        <span class="input-group-btn">
+                                                            <input type="number" value="@item.SO_LUONG" class="form-control">
+                                                        </span>
+                                                        <a href="@Url.Action("AddBasket","Basket",new { Id=item.MA_SP})"><i class="fa fa-plus-circle"></i></a>
+                                                    </div>
                                                 </td>
                                                 <td >@String.Format("{0:0,0} VNĐ", item.GIA_BAN)</td>
 
                                                 <td>@String.Format("{0:0,0} VNĐ", item.GIA_BAN * item.SO_LUONG)</td>
-                                                <td><a href="#"><i class="fa fa-trash-o"></i></a>
+                                                <td><a href="@Url.Action("RemoveBasket","Basket",new {Id=item.MA_SP})"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                                 }

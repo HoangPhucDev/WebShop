@@ -1,16 +1,14 @@
 ﻿@model List<ModelWebBanHang.NHOM_SAN_PHAM>
 
-<nav class="navbar-affixed-top" data-spy="affix" data-offset-top="200">
+<nav class="navbar-affixed-top affix-top" data-spy="affix" data-offset-top="200">
 
     <nav class="navbar navbar-default yamm" role="navigation" id="navbar">
 
         <div class="container">
-            <div class="row">
-                <div class="col-md-12">
                     <div class="navbar-header">
                         <a class="navbar-brand home" href="~/">
-                            <img src="~/Content/img/logo.png" alt="Universal logo" class="hidden-xs hidden-sm">
-                            <img src="~/Content/img/logo-small.png" alt="Universal logo" class="visible-xs visible-sm"><span class="sr-only">Hoang Phuc Shop</span>
+                            <img src="~/Content/img/logo.png" alt="Hoang Phuc logo" class="hidden-xs hidden-sm">
+                            <img src="~/Content/img/logo-small.png" alt="Hoang Phuc logo" class="visible-xs visible-sm"><span class="sr-only">Hoang Phuc Shop</span>
                         </a>
                         <div class="navbar-buttons">
                             <button type="button" class="navbar-toggle btn-template-main" data-toggle="collapse" data-target="#navigation">
@@ -20,109 +18,92 @@
                         </div>
                     </div>
                     <!--/.navbar-header -->
+            <div class="navbar-collapse collapse" id="navigation">
+                
 
-                    @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "col-lg-6" }))
-                    {
-                        <div class="input-group input-group-lg navbar-brand">
-                            @Html.TextBox("Name", "", new { @class = "form-control", @placeholder = "Tìm Kiếm Sản Phẩm" })
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-template-primary"><i class="fa fa-search"></i></button>
-                            </span>
-                        </div>
+                @using (Html.BeginForm("Search", "Home", FormMethod.Get, new { @class = "navbar-form  navbar-left", role = "search"}))
+                {
+                    <div class="input-group input-group-lg">
+                        @Html.TextBox("Name", "", new { @class = "form-control", @placeholder = "Tìm Kiếm Sản Phẩm"})
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-template-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
                     }
-
-                    <div class="input-group input-group-lg navbar-brand navbar-right" id="basket-overview">
-                        
-                            <a href="@Url.Action("Index","Basket")" class="btn btn-template-primary"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@Html.Action("HeaderBasket", "Home")</span></a>
-                        
+                
+                    <div class="navbar-btn navbar-left btn-group btn-group-lg" id="basket-overview">
+                        <a href="@Url.Action("Index","Basket")" class="btn btn-template-primary"><i class="fa fa-shopping-cart"></i><span class="hidden-sm">@Html.Action("HeaderBasket", "Home")</span></a>
                     </div>
-                </div>
 
-                <div class="col-md-12">
-                    <!--/.nav-collapse -->
-
-                    <div class="navbar-collapse collapse" id="navigation">
-                        <ul class="nav navbar-nav navbar-left">
-                            @*<li class="dropdown active">
-                                @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
-                            </li>*@
-                            <li class="dropdown use-yamm yamm-fw active">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">DANH MỤC<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="yamm-content">
-                                            <div class="row">
-                                                <div class="col-sm-6">
-                                                    <img src="~/Content/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
-                                                </div>
-                                                @foreach (var item in Model.Where(p => p.MA_NHOM_CHA == 0).ToList())
-                                                {
-                                                    <div class="col-sm-3">
-                                                        <h5>@Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
-                                                        <ul>
-                                                            @foreach (var subitem in Model.Where(p => p.MA_NHOM_CHA != 0).ToList())
-                                                            {
-                                                                if (item.MA_NHOM_SP == subitem.MA_NHOM_CHA)
-                                                                {
-                                                                    <li> @Html.ActionLink(subitem.TEN_NHOM_SP, "GroupProduct", new { IdGroup = subitem.MA_NHOM_SP, NameGroup = subitem.TEN_NHOM_SP })</li>
-                                                                }
-                                                            }
-                                                        </ul>
-                                                    </div>
-                                                }
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown active">
+                        @Html.ActionLink("Home", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
+                    </li>
+                    <li class="dropdown use-yamm yamm-fw">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">DANH MỤC<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <img src="~/Content/img/template-easy-customize.png" class="img-responsive hidden-xs" alt="">
+                                        </div>
+                                        @foreach (var item in Model.Where(p => p.MA_NHOM_CHA == 0).ToList())
+                                        {
+                                            <div class="col-sm-3">
+                                                <h5>@Html.ActionLink(@item.TEN_NHOM_SP, "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
+                                                <ul>
+                                                    @foreach (var subitem in Model.Where(p => p.MA_NHOM_CHA != 0).ToList())
+                                                    {
+                                                        if (item.MA_NHOM_SP == subitem.MA_NHOM_CHA)
+                                                        {
+                                                            <li> @Html.ActionLink(subitem.TEN_NHOM_SP, "GroupProduct", new { IdGroup = subitem.MA_NHOM_SP, NameGroup = subitem.TEN_NHOM_SP })</li>
+                                                        }
+                                                    }
+                                                </ul>
                                             </div>
-                                        </div>
-                                    </li>
-                                </ul>
+                                        }
+                                    </div>
+                                </div>
                             </li>
-                            @foreach (var item in Model.Where(p => p.MA_NHOM_CHA == 0).ToList())
-                            {
-                            <li class="dropdown use-yamm yamm-fw">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">@item.TEN_NHOM_SP<b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <div class="yamm-content">
-                                                    
-                                                        <ul>
-                                                            @foreach (var subitem in Model.Where(p => p.MA_NHOM_CHA != 0).ToList())
-                                                            {
-                                                                if (item.MA_NHOM_SP == subitem.MA_NHOM_CHA)
-                                                                {
-                                                                    <li> @Html.ActionLink(subitem.TEN_NHOM_SP, "GroupProduct", new { IdGroup = subitem.MA_NHOM_SP, NameGroup = subitem.TEN_NHOM_SP })</li>
-                                                                }
-                                                            }
-                                                        </ul>
-                                                        <h5>@Html.ActionLink("Xem Tất Cả", "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </li>
-                            }
-                            <!-- ========== FULL WIDTH MEGAMENU ================== -->
-                            <!-- ========== FULL WIDTH MEGAMENU END ================== -->
-
-                            @*<li class="dropdown">
-                                @Html.ActionLink("LIÊN HỆ", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
-                            </li>
-
-                            <li class="dropdown">
-                                @Html.ActionLink("GIỚI THIỆU", "About", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
-                            </li>*@
                         </ul>
+                    </li>
+                    @*@foreach (var item in Model.Where(p => p.MA_NHOM_CHA == 0).ToList())
+            {
+                <li class="dropdown use-yamm yamm-fw">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@item.TEN_NHOM_SP<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <div class="yamm-content">
 
-                    </div>
+                                <ul>
+                                    @foreach (var subitem in Model.Where(p => p.MA_NHOM_CHA != 0).ToList())
+                                    {
+                                        if (item.MA_NHOM_SP == subitem.MA_NHOM_CHA)
+                                        {
+                                            <li> @Html.ActionLink(subitem.TEN_NHOM_SP, "GroupProduct", new { IdGroup = subitem.MA_NHOM_SP, NameGroup = subitem.TEN_NHOM_SP })</li>
+                                        }
+                                    }
+                                </ul>
+                                <h5>@Html.ActionLink("Xem Tất Cả", "GroupProduct", new { IdGroup = item.MA_NHOM_SP, NameGroup = item.TEN_NHOM_SP.Trim() })</h5>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            }*@
+                    <li class="dropdown">
+                        @Html.ActionLink("LIÊN HỆ", "Contact", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
+                    </li>
 
-                </div>
-
+                    <li class="dropdown">
+                        @Html.ActionLink("GIỚI THIỆU", "About", "Home", routeValues: null, htmlAttributes: new { @class = "dropdown-toggle" })
+                    </li>
+                </ul>
                     <!--/.nav-collapse -->
-
-
-
+                </div>
 
                 </div>
-        </div>
-
-
+                    <!--/.nav-collapse -->
     </nav>
     <!-- /#navbar -->
 

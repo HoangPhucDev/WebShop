@@ -50,7 +50,7 @@ namespace WebShop.Controllers
 
             BasketSession.AddSession(new BasketModel() { MaSP = Product.MA_SP, TenSP = Product.TEN_SP, Gia = Product.GIA_BAN, SoLuong = Quantity });
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Basket");
         }
 
         [HttpGet]
@@ -59,7 +59,22 @@ namespace WebShop.Controllers
             var Product = SanPhamDAO.Instance.GetListProductById(Id);
 
             BasketSession.AddSession(new BasketModel() { MaSP = Product.MA_SP, TenSP = Product.TEN_SP, Gia = Product.GIA_BAN, SoLuong = 1 });
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Basket");
+        }
+        [HttpGet]
+        public ActionResult RemoveBasket(int Id)
+        {
+            var Product = SanPhamDAO.Instance.GetListProductById(Id);
+            BasketSession.RemoveItem(Id);
+            return RedirectToAction("Index", "Basket");
+        }
+
+        [HttpGet]
+        public ActionResult GiamBasket(int Id)
+        {
+            //var Product = SanPhamDAO.Instance.GetListProductById(Id);
+            BasketSession.GiamItem(Id);
+            return RedirectToAction("Index", "Basket");
         }
         public ActionResult Error()
         {
